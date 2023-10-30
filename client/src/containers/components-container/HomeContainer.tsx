@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Hero, About } from "../../components";
+import { Hero, About, Portfolio } from "../../components";
 
 interface Section {
   type?: "hero" | "about" | "portfolio" | "contact" | "footer";
@@ -17,7 +17,6 @@ interface Sections {
 }
 
 const HomeContainer: React.FC<Sections> = ({ sections }) => {
-  console.log(sections);
   return (
     <>
       {sections
@@ -25,6 +24,7 @@ const HomeContainer: React.FC<Sections> = ({ sections }) => {
             <Fragment key={section.type}>
               {section.type === "hero" && <Hero data={section} />}
               {section.type === "about" && <About data={section} />}
+              {section.type === "portfolio" && <Portfolio data={section} />}
             </Fragment>
           ))
         : ""}
