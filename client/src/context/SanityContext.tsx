@@ -12,6 +12,7 @@ interface SanityContextProps {
   officeSection: SectionData[];
   projectDescriptionSection: SectionData[];
   isLoading: boolean;
+  fetchError: boolean;
 }
 
 interface SanityProviderProps {
@@ -31,12 +32,17 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [projectDescriptionSection, setProjectDescriptionSection] = useState(
     []
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [fetchError, setFetchError] = useState<boolean>(false);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const homeQuery = `*[_type == 'hngsHome'] | order(orderRank)`;
+        const homeQuery = `*[_type == 'hngsHome']{
+          ...,
+          'portfolioImages': portfolioImages[].asset->url,
+          'heroImage': heroImage.asset->url
+        } | order(orderRank)`;
         const homeResult = await client.fetch(homeQuery);
 
         const workQuery = `*[_type == 'hngsWork'] | order(orderRank)`;
@@ -56,6 +62,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
+        setFetchError(true);
         console.log(error);
       }
     };
@@ -68,6 +75,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     officeSection,
     projectDescriptionSection,
     isLoading,
+    fetchError,
   };
 
   return (

@@ -1,15 +1,16 @@
-import React from "react"
+import React from "react";
 
 interface HeroProps {
-  heroImage?: string | null;
+  data?: any;
 }
 
-const Hero: React.FC<HeroProps> = ({heroImage}) => {
+const Hero: React.FC<HeroProps> = ({ data }) => {
   return (
-    <section >
-      <img src={heroImage ? heroImage : ''} alt="" />
-    </section>
-  )
-}
+    <section
+      className="bg-cover bg-center w-full h-screen"
+      style={{ backgroundImage: `url(${data.heroImage})` }}
+    ></section>
+  );
+};
 
-export default Hero
+export default Hero;

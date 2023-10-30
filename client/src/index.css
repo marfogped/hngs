@@ -4,3 +4,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.stroke-font{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #f5f5f5;
+    color: transparent;
+}
