@@ -9,13 +9,15 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
   const sendMessage = async (event) => {};
 
   return (
-    <section className="grid grid-cols-2 md:h-[70vh] p-8 place-content-center w-3/4 mx-auto">
-      <div>
-        <h2 className="xl:text-6xl">{data.contactTitle}</h2>
+    <section className="grid md:grid-cols-5 xs:grid-cols-1 sm:grid-cols-1 xs:grid-rows-1 sm:grid-rows-1 md:h-[70vh] p-8 place-content-center xs:w-full xl:w-3/4 mx-auto">
+      <div className="col-span-2 md:col-span-2">
+        <h2 className="xs:text-3xl sm:text-3xl lg:text-4xl xl:text-6xl">
+          {data.contactTitle}
+        </h2>
         {data.contactDescription ? <p>{data.contactDescription}</p> : ""}
       </div>
 
-      <div className="w-full">
+      <div className="col-span-3 md:col-span-3 xs:mt-10 sm:mt-10">
         <form
           action="POST"
           onSubmit={sendMessage}

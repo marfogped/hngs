@@ -27,7 +27,7 @@ const Navbar = () => {
     <nav
       className={`${
         color ? "bg-white shadow-md delay-[400ms]" : ""
-      } flex items-center w-full p-8 fixed transition-all ease-in`}
+      } flex items-center w-full p-8 fixed transition-all ease-in z-[999]`}
     >
       <ul className="flex items-center justify-between w-full">
         {windowWidth < 480 ? (
@@ -58,12 +58,12 @@ const Navbar = () => {
                       item.name === "CONTACT"
                         ? `${
                             color
-                              ? "text-black xl:text-6xl"
+                              ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl"
                               : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"
                           } stroke-font transition-all ease-in duration-500`
                         : `${
                             color
-                              ? "text-black xl:text-6xl"
+                              ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl"
                               : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"
                           } transition-all ease-in duration-500`
                     }`}

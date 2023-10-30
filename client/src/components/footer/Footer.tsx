@@ -14,9 +14,8 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ data }) => {
-  console.log(data);
   return (
-    <footer className="flex xs:flex-col xs:justify-start items-center md:justify-between p-6 border-t border-gray-500">
+    <footer className="flex xs:flex-col sm:flex-col xs:justify-start items-center md:justify-between p-6 border-t border-gray-500">
       <div>
         <ul className="flex items-center gap-6">
           {FOOTER_ITEMS
@@ -29,7 +28,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
         </ul>
       </div>
       <div>
-        <ul className="flex items-center gap-6">
+        <ul className="flex items-center gap-4 xs:mt-4 sm:mt-4">
           {data && data.footerMediaLinks
             ? data.footerMediaLinks.map((media: any, mediaIdx: number) => (
                 <li key={mediaIdx}>

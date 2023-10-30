@@ -6,6 +6,7 @@
     color: transparent;
     -webkit-text-stroke: 2px;
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

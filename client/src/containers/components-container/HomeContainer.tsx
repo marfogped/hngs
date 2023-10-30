@@ -17,6 +17,7 @@ interface Sections {
 }
 
 const HomeContainer: React.FC<Sections> = ({ sections }) => {
+  console.log(sections);
   return (
     <>
       {sections
