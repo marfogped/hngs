@@ -11,9 +11,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
     <section className="grid md:grid-cols-4 xs:grid-cols-2 xs:grid-rows-4 md:grid-rows-2 w-full xs:min-h-[50vh] md:h-[70vh]">
       {data && data.portfolioImages
         ? data.portfolioImages.map((image: string, imageIdx: number) => (
-            <div className="" key={imageIdx}>
+            <article className="" key={imageIdx}>
               <img className="h-full w-full object-cover" src={image} alt="" />
-            </div>
+            </article>
           ))
         : ""}
     </section>
