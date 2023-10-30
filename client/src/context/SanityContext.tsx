@@ -1,4 +1,4 @@
-import React, { useContext, useState, ReactNode, useEffect } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
 
 interface SectionData {
@@ -19,11 +19,9 @@ interface SanityProviderProps {
   children: ReactNode;
 }
 
-const SanityContext = React.createContext<SanityContextProps | null>(null);
-
-export function useSanity() {
-  return useContext(SanityContext)!;
-}
+export const SanityContext = React.createContext<SanityContextProps | null>(
+  null
+);
 
 export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [homeSection, setHomeSection] = useState([]);

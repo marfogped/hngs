@@ -1,7 +1,7 @@
 import { HomeContainer } from "./containers";
 import { Navbar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { useSanity } from "./context/SanityContext";
+import { useSanity } from "./hooks/useSanity";
 
 function App() {
   const {
