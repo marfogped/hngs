@@ -1,8 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { client } from "../../api/sanityClient";
-
 import { Hero, About } from "../../components";
-import { Navbar } from "../../components";
 
 interface Section {
   type?: "hero" | "about" | "portfolio" | "contact" | "footer";
@@ -27,6 +24,7 @@ const HomeContainer: React.FC<Sections> = ({ sections }) => {
         ? sections.map((section) => (
             <Fragment key={section.type}>
               {section.type === "hero" && <Hero data={section} />}
+              {section.type === "about" && <About data={section} />}
             </Fragment>
           ))
         : ""}
