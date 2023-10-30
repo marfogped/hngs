@@ -10,53 +10,60 @@ function App() {
     projectDescriptionSection,
     workSection,
     officeSection,
+    fetchError,
   } = useSanity();
 
   return (
     <>
       {isLoading ? (
-        <div>something went wrong</div>
+        <div>loading...</div>
       ) : (
         <>
-          <Navbar />
-          <main>
-            <Routes>
-              {homeSection ? (
-                <Route
-                  path="/"
-                  element={<HomeContainer sections={homeSection} />}
-                />
-              ) : (
-                ""
-              )}
-              {projectDescriptionSection ? (
-                <Route
-                  path="/project-description"
-                  element={
-                    <HomeContainer sections={projectDescriptionSection} />
-                  }
-                />
-              ) : (
-                ""
-              )}
-              {workSection ? (
-                <Route
-                  path="/work"
-                  element={<HomeContainer sections={workSection} />}
-                />
-              ) : (
-                ""
-              )}
-              {officeSection ? (
-                <Route
-                  path="/office"
-                  element={<HomeContainer sections={officeSection} />}
-                />
-              ) : (
-                ""
-              )}
-            </Routes>
-          </main>
+          {fetchError ? (
+            <div>something went wrong</div>
+          ) : (
+            <>
+              <Navbar />
+              <main>
+                <Routes>
+                  {homeSection ? (
+                    <Route
+                      path="/"
+                      element={<HomeContainer sections={homeSection} />}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {projectDescriptionSection ? (
+                    <Route
+                      path="/project-description"
+                      element={
+                        <HomeContainer sections={projectDescriptionSection} />
+                      }
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {workSection ? (
+                    <Route
+                      path="/work"
+                      element={<HomeContainer sections={workSection} />}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {officeSection ? (
+                    <Route
+                      path="/office"
+                      element={<HomeContainer sections={officeSection} />}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </Routes>
+              </main>
+            </>
+          )}
         </>
       )}
     </>
