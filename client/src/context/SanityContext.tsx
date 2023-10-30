@@ -38,7 +38,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
       try {
         const homeQuery = `*[_type == 'hngsHome']{
           ...,
-          'portfolioImages': portfolioImages[].asset->url,
+          'portfolioImages': portfolioImages[].image.asset->url,
           'heroImage': heroImage.asset->url
         } | order(orderRank)`;
         const homeResult = await client.fetch(homeQuery);
