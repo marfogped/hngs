@@ -1,6 +1,7 @@
 import React from "react";
 
 interface AboutProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 }
 
@@ -8,7 +9,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
   console.log(data);
 
   return (
-    <section className="grid md:grid-cols-4 xs:grid-rows-2 xs:grid-cols-1 p-8 h-[60vh] xl:w-3/4 xs:w-full mx-auto place-content-center">
+    <section className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 h-[60vh] xl:w-3/4 xs:w-full mx-auto place-content-center">
       <div className="col-span-1">
         <h1 className="text-xl font-semibold">
           {data.aboutTitle.toUpperCase()}

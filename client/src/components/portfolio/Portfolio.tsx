@@ -9,7 +9,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
   console.log(data);
 
   return (
-    <section className="grid md:grid-cols-4 xs:grid-cols-2 xs:grid-rows-4 md:grid-rows-2 w-full xs:min-h-[70vh] md:h-[120vh]">
+    <section className="grid md:grid-cols-4 md:grid-rows-2 w-full xs:min-h-[70vh] md:h-[120vh]">
       {data && data.portfolioImages
         ? data.portfolioImages.map((image: any, imageIdx: number) => (
             <article key={imageIdx} className="cursor-pointer relative flex flex-col justify-center overflow-hidden bg-gray-50">
