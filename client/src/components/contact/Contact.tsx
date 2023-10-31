@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import "./Contact.css";
 
@@ -9,7 +10,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
   const sendMessage = async (event) => {};
 
   return (
-    <section className="grid md:grid-cols-5 xs:grid-cols-1 sm:grid-cols-1 xs:grid-rows-1 sm:grid-rows-1 md:h-[70vh] p-8 place-content-center xs:w-full xl:w-3/4 mx-auto">
+    <section className="grid md:grid-cols-5 xs:grid-cols-1 sm:grid-cols-1 xs:grid-rows-1 md:h-[70vh] p-8 place-content-center xs:w-full xl:w-3/4 mx-auto">
       <div className="col-span-2 md:col-span-2">
         <h2 className="xs:text-3xl sm:text-3xl lg:text-4xl xl:text-6xl">
           {data.contactTitle}
