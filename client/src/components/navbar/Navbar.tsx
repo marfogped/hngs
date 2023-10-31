@@ -27,7 +27,7 @@ const Navbar = () => {
     <nav
       className={`${
         color ? "bg-white shadow-md delay-[400ms]" : ""
-      } flex items-center w-full p-8 fixed transition-all ease-in z-[999]`}
+      } flex items-center w-full p-8 fixed transition-all ease-in z-10`}
     >
       <ul className="flex items-center justify-between w-full">
         {windowWidth < 480 ? (
