@@ -1,6 +1,5 @@
 import {SanityDocument} from '@sanity/types'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
-
 // --- DOCUMENT TYPES ---
 const HERO = 'hero'
 const ABOUT = 'about'
@@ -16,11 +15,11 @@ const LINKEDIN = 'linkedin'
 const BEHANCE = 'behance'
 
 export default {
-  name: 'hngsHome',
-  title: 'HNGS Home',
-  type: 'document',
-  orderings: [orderRankOrdering],
-  fields: [
+ name: 'hngsHome',
+ title: 'HNGS Home',
+ type: 'document',
+ orderings: [orderRankOrdering],
+ fields: [
     orderRankField({type: 'hngsHome'}),
     {
       name: 'type',
@@ -45,7 +44,7 @@ export default {
     {
       name: 'aboutDescription',
       title: 'About Description',
-      type: 'string',
+      type: 'text',
       hidden: ({document}: {document: SanityDocument}) => document.type !== ABOUT,
     },
     {
@@ -122,5 +121,15 @@ export default {
       ],
       hidden: ({document}: {document: SanityDocument}) => document.type !== FOOTER,
     },
-  ],
+ ],
+ preview: {
+    select: {
+      title: 'type',
+    },
+    prepare({title} : any) {
+      return {
+        title: title,
+      }
+    },
+ },
 }
