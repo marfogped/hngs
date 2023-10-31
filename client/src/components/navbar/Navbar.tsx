@@ -61,7 +61,7 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <motion.div className={`z-50 fixed top-0 left-0 bottom-0 w-3/4 ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
-                  <Links />
+                  <Links setOpen={setOpen} open={open} />
                 </motion.div>
                 <ToggleButton setOpen={setOpen} open={open} color={color}/>
             </motion.nav>

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { NAV_ITEMS } from "../../../constants";
 import { Link } from "react-router-dom";
+import React from "react";
+
 
 const variants = {
   open: {
@@ -26,7 +28,12 @@ const itemVariants = {
   },
 };
 
-const Links = () => {
+type LinksProps = {
+  setOpen: (value: boolean) => void;
+  open: boolean;
+};
+
+const Links: React.FC<LinksProps> = ({ setOpen, open }) => {
 
   return (
     <motion.div className="absolute w-full h-full flex flex-col items-center justify-center gap-4" variants={variants}>
@@ -37,6 +44,7 @@ const Links = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="text-2xl"
+          onClick={() => {setOpen(!open)}}
         >
             <Link to={item.to}>
                 <span>{item.name}</span>
