@@ -7,7 +7,7 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ data }) => {
-  const sendMessage = async (event) => {};
+  const sendMessage = async () => {};
 
   return (
     <section className="grid md:grid-cols-5 xs:grid-cols-1 sm:grid-cols-1 xs:grid-rows-1 md:h-[70vh] p-8 place-content-center xs:w-full xl:w-3/4 mx-auto">
