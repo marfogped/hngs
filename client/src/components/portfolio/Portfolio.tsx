@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
 interface PortfolioProps {
@@ -14,7 +15,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
             <article className="" key={imageIdx}>
               <img
                 className="h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-300 ease-in"
-                src={image?.image}
+                src={image?.imageUrl}
                 alt=""
               />
             </article>
