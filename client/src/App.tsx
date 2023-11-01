@@ -1,5 +1,5 @@
 import { HomeContainer } from "./containers";
-import { Navbar } from "./components";
+import { Navbar, NotFound, FetchError } from "./components";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useSanity } from "./hooks/useSanity";
 import { AnimatePresence, motion } from "framer-motion";
@@ -23,7 +23,7 @@ function App() {
       ) : (
         <>
           {fetchError ? (
-            <div>something went wrong</div>
+            <FetchError />
           ) : (
             <>
               <AnimatePresence mode="wait">
@@ -66,6 +66,7 @@ function App() {
                       ) : (
                         ""
                       )}
+                      <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
                 </motion.div>
