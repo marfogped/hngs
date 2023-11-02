@@ -9,7 +9,7 @@ type ToggleButtonProps = {
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ setOpen, open, color }) => {
     return (
-        <button className={`${color ? "stroke-black delay-[400ms]" : "stroke-white"} `} onClick={() => setOpen(!open)}>
+        <button className={`${color ? "stroke-black delay-[400ms]" : `${open ? "stroke-black" : "stroke-white"}`} `} onClick={() => setOpen(!open)}>
           <svg width="35" height="35" viewBox="0 0 23 23">
             <motion.path
               strokeWidth="3"

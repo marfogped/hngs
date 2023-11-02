@@ -52,7 +52,7 @@ const Navbar = () => {
           <>
             <motion.nav 
             className={` ${
-              color ? "bg-white text-black shadow-md delay-[400ms]" : "bg-transparent text-white"
+              color ? `bg-white text-black shadow-md delay-[400ms]` : `${open ? "bg-white text-black " : "text-white bg-transparent"}`
             } flex items-center justify-between p-6 fixed transition-all ease-in w-full z-50`} 
             animate={open ? "open" : "closed"}>
                 <div className="text-4xl font-semibold">
@@ -60,7 +60,7 @@ const Navbar = () => {
                     HNGS
                   </Link>
                 </div>
-                <motion.div className={`z-50 fixed top-0 left-0 bottom-0 w-3/4 ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
+                <motion.div className={`fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
                   <Links setOpen={setOpen} open={open} />
                 </motion.div>
                 <ToggleButton setOpen={setOpen} open={open} color={color}/>
@@ -74,6 +74,12 @@ const Navbar = () => {
               } flex items-center w-full p-8 fixed transition-all ease-in z-10`}
             >
               <ul className="flex items-center justify-between w-full">
+                <li 
+                className={`${ color ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl" : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"} font-semibold transition-all ease-in duration-500 }`}>
+                  <Link to="/">
+                    <span>HNGS</span>
+                  </Link>
+                </li>
                 {NAV_ITEMS
                   ? NAV_ITEMS.map((item) => (
                       <li

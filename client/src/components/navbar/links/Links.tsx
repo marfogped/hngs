@@ -3,7 +3,6 @@ import { NAV_ITEMS } from "../../../constants";
 import { Link } from "react-router-dom";
 import React from "react";
 
-
 const variants = {
   open: {
     transition: {
@@ -43,7 +42,7 @@ const Links: React.FC<LinksProps> = ({ setOpen, open }) => {
           variants={itemVariants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="text-2xl"
+          className="text-2xl font-semibold"
           onClick={() => {setOpen(!open)}}
         >
             <Link to={item.to}>
