@@ -1,25 +1,25 @@
-import {SanityDocument} from '@sanity/types'
-import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import { SanityDocument, Rule } from '@sanity/types'
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list'
 
+// --- DOCUMENT TYPES ---
 const HERO = 'hero'
 const ABOUT = 'about'
 const PORTFOLIO = 'portfolio'
 const CONTACT = 'contact'
-const FOOTER = 'footer'
 
 export default {
-  name: 'hngsWork',
-  title: 'HNGS Work',
-  type: 'document',
-  orderings: [orderRankOrdering],
-  fields: [
+ name: 'hngsWork',
+ title: 'HNGS Work',
+ type: 'document',
+ orderings: [orderRankOrdering],
+ fields: [
     orderRankField({type: 'hngsWork'}),
     {
       name: 'type',
       title: 'Type',
       type: 'string',
       options: {
-        list: [HERO, ABOUT, PORTFOLIO, FOOTER, CONTACT],
+        list: [HERO, ABOUT, PORTFOLIO, CONTACT],
       },
     },
     {
@@ -37,16 +37,24 @@ export default {
     {
       name: 'aboutDescription',
       title: 'About Description',
-      type: 'string',
+      type: 'text',
       hidden: ({document}: {document: SanityDocument}) => document.type !== ABOUT,
     },
-    {
-      name: 'portfolioImages',
-      title: 'Portfolio Images',
-      type: 'array',
-      of: [{type: 'image', options: {hotspot: true}}],
-      hidden: ({document}: {document: SanityDocument}) => document.type !== PORTFOLIO,
-    },
+    // {
+    //   name: 'portfolio',
+    //   title: 'Portfolio',
+    //   type: 'array',
+    //   of: [
+    //     {
+    //       type: 'reference',
+    //       to: [{ type: 'hngsProjects' }],
+    //     },
+    //   ],
+    //   hidden: ({document}: {document: SanityDocument}) => document.type !== PORTFOLIO,
+    //   options: {
+    //     filter: '$type == "hngsProjects"',
+    //   },
+    // },
     {
       name: 'contactTitle',
       title: 'Contact Title',
@@ -59,12 +67,15 @@ export default {
       type: 'string',
       hidden: ({document}: {document: SanityDocument}) => document.type !== CONTACT,
     },
-    {
-      name: 'footerMediaLinks',
-      title: 'Footer Media Links',
-      type: 'array',
-      of: [{type: 'string', options: {hotspot: true}}],
-      hidden: ({document}: {document: SanityDocument}) => document.type !== FOOTER,
+ ],
+ preview: {
+    select: {
+      title: 'type',
     },
-  ],
+    prepare({title} : any) {
+      return {
+        title: title,
+      }
+    },
+ },
 }

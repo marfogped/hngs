@@ -1,5 +1,6 @@
-import {SanityDocument} from '@sanity/types'
-import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import { SanityDocument, Rule } from '@sanity/types'
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list'
+
 // --- DOCUMENT TYPES ---
 const HERO = 'hero'
 const ABOUT = 'about'
@@ -48,40 +49,19 @@ export default {
       hidden: ({document}: {document: SanityDocument}) => document.type !== ABOUT,
     },
     {
-      name: 'portfolioImages',
-      title: 'Portfolio Images',
+      name: 'portfolio',
+      title: 'Portfolio',
       type: 'array',
       of: [
         {
-          type: 'object',
-          fields: [
-            {
-              name: 'name',
-              title: 'Name',
-              type: 'string',
-            },
-            {
-              name: 'url',
-              title: 'URL',
-              type: 'string',
-            },
-            {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
-            },
-            {
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
-          ],
+          type: 'reference',
+          to: [{ type: 'hngsProjects' }],
         },
       ],
-      hidden: ({document}: {document: SanityDocument}) => document.type !== PORTFOLIO,
+      options: {
+        limit: 8,
+      },
+      validation: (Rule : Rule) => Rule.required(),
     },
     {
       name: 'contactTitle',

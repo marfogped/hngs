@@ -17,19 +17,10 @@ export default defineConfig({
         return S.list()
           .title('type')
           .items([
-            // Minimum required configuration
-            // orderableDocumentListDeskItem({type: 'hngsHome', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsOffice', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsWork', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsProjectDescription', S, context}),
-            orderableDocumentListDeskItem({
-              type: 'hngsHome',
-              title: 'HNGS Home',
-              // id: 'orderable-en-projects',
-              // pass from the structure callback params above
-              S,
-              context,
-            }),
+            orderableDocumentListDeskItem({ type: 'hngsHome', title: 'HNGS Home', S, context, }),
+            orderableDocumentListDeskItem({type: 'hngsWork', title: 'HNGS Work', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsOffice',title: 'HNGS Office', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsProjects', title: 'HNGS Projects', S, context}),
           ])
       },
     }),
