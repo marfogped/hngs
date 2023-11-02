@@ -53,9 +53,12 @@ const Navbar = () => {
             <motion.nav 
             className={` ${
               color ? `bg-white text-black shadow-md delay-[400ms]` : `${open ? "bg-white text-black " : "text-white bg-transparent"}`
-            } flex items-center justify-between p-6 fixed transition-all ease-in w-full z-50`} 
+            } flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`} 
             animate={open ? "open" : "closed"}>
-                <div className="text-4xl font-semibold">
+                <div 
+                className="text-4xl font-semibold"
+                onClick={() => {setOpen(!open)}}
+                >
                   <Link to={"/"}>
                     HNGS
                   </Link>

@@ -6,7 +6,6 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ data }) => {
-  console.log(data);
 
   return (
     <section className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 h-[60vh] xl:w-3/4 xs:w-full mx-auto place-content-center">
