@@ -1,36 +1,44 @@
-import React, { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Hero, About, Portfolio, Contact, Footer } from "../../components";
+import { useSanity } from "../../hooks/useSanity";
+import { FetchError } from "../../components";
 
-interface Section {
-  type?: "hero" | "about" | "portfolio" | "contact" | "footer";
-  heroImage?: string | null;
-  aboutTitle?: string | null;
-  aboutDescription?: string | null;
-  portfolioImages?: string[];
-  contactTitle?: string[];
-  contactDescription?: string[];
-  footerMediaLinks?: string[];
-}
+const HomeContainer = () => {
+  
+  const { getHomePage, homeSection, isLoading, fetchError } = useSanity();
 
-interface Sections {
-  sections: Section[];
-}
-
-const HomeContainer: React.FC<Sections> = ({ sections }) => {
-  console.log(sections);
+  useEffect(() => {
+    if (!homeSection.length) getHomePage();
+  });
   return (
     <>
-      {sections
-        ? sections.map((section) => (
-            <Fragment key={section.type}>
-              {section.type === "hero" && <Hero data={section} />}
-              {section.type === "about" && <About data={section} />}
-              {section.type === "portfolio" && <Portfolio data={section} />}
-              {section.type === "contact" && <Contact data={section} />}
-              {section.type === "footer" && <Footer data={section} />}
-            </Fragment>
-          ))
-        : ""}
+      {
+        isLoading ? (
+          <div>loading...</div>
+        ) : (
+          <>
+            {
+              fetchError ? (
+                <FetchError />
+              ) : (
+                <>
+                  {homeSection
+                    ? homeSection.map((section) => (
+                        <Fragment key={section.type}>
+                          {section.type === "hero" && <Hero data={section} />}
+                          {section.type === "about" && <About data={section} />}
+                          {section.type === "portfolio" && <Portfolio data={section} />}
+                          {section.type === "contact" && <Contact data={section} />}
+                          {section.type === "footer" && <Footer data={section} />}
+                        </Fragment>
+                      ))
+                    : ""}
+                </>
+              )
+            }
+          </>
+        )
+      }
     </>
   );
 };
