@@ -1,5 +1,5 @@
 import { HomeContainer, OfficeContainer, WorkContainer } from "./containers";
-import { Navbar, NotFound, Footer } from "./components";
+import { Navbar, NotFound, Footer, ProjectDetails } from "./components";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Transition from "./components/transition/Transition";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,6 +30,7 @@ function App() {
               path="/office"
               element={<OfficeContainer />}
             />
+            <Route path="/work/:project" element={<ProjectDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
