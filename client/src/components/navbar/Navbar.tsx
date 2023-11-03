@@ -74,7 +74,7 @@ const Navbar = () => {
                     HNGS
                   </Link>
                 </div>
-                <motion.div className={`link link-underline fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white link-underline-black" : "link-underline-white"} transition-all text-black duration-700`} variants={variants}>
+                <motion.div className={`link link-underline fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
                   <Links setOpen={setOpen} open={open} />
                 </motion.div>
                 <ToggleButton setOpen={setOpen} open={open} color={color}/>

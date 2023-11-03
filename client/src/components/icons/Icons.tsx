@@ -2,8 +2,8 @@ export const FacebookIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="2em"
-      height="2em"
+      width="3em"
+      height="3em"
       viewBox="0 0 24 24"
     >
       <path
@@ -18,8 +18,8 @@ export const InstagramIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="2em"
-      height="2em"
+      width="3em"
+      height="3em"
       viewBox="0 0 256 256"
     >
       <path
@@ -34,8 +34,8 @@ export const YoutubeIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="2em"
-      height="2em"
+      width="3em"
+      height="3em"
       viewBox="0 0 24 24"
     >
       <path
@@ -50,8 +50,8 @@ export const LinkedInIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="2em"
-      height="2em"
+      width="3em"
+      height="3em"
       viewBox="0 0 24 24"
     >
       <path
@@ -66,8 +66,8 @@ export const BehanceIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="2em"
-      height="2em"
+      width="3em"
+      height="3em"
       viewBox="0 0 1024 1024"
     >
       <path

@@ -34,4 +34,7 @@ export interface AllMembersInt{
     members: AllMembersProps[]
 }
 
-  
+export interface SocialMediaInt {
+    socialMedia: string,
+    mediaUrl: string,
+}

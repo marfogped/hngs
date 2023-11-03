@@ -1,6 +1,6 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
-import { HomeSections, AllProjectsProps, AllMembersProps } from "../constants/types";
+import { HomeSections, AllProjectsProps, AllMembersProps, SocialMediaInt } from "../constants/types";
 
 interface SectionData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,10 +13,12 @@ interface SanityContextProps {
   officeSection: SectionData[];
   allProjects: AllProjectsProps[];
   allMembers: AllMembersProps[];
+  socialMedia: SocialMediaInt[];
   getAllProjects: () => Promise<void>;
   getAllMembers: () => Promise<void>;
   getWorkPage: () => Promise<void>;
   getOfficePage: () => Promise<void>;
+  getSocialMedia: () => Promise<void>;
   getHomePage: () => Promise<HomeSections[]>;
   isLoading: boolean;
   fetchError: boolean;
@@ -36,6 +38,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [officeSection, setOfficeSection] = useState([]);
   const [allProjects, setAllProjects] = useState([])
   const [allMembers, setAllMembers] = useState([])
+  const [socialMedia, setSocialMedia] = useState([])
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);
@@ -68,6 +71,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
 
   useEffect(() => {
     getHomePage();
+    getSocialMedia();
   }, [])
   
 
@@ -101,12 +105,23 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
       } | order(orderRank)`;
       const membersResult = await client.fetch(membersQuery);
       if(membersResult) setAllMembers(membersResult);
-
+      
       setIsLoading(false);
       return membersResult;
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
+      console.log(error)
+    }
+  }
+  
+  const getSocialMedia = async () => {
+    try {
+      const socialMediaQuery = `*[_type == 'hngsSocialMedia'] | order(orderRank)`;
+      const socialMediaResult = await client.fetch(socialMediaQuery);
+      if(socialMediaResult) setSocialMedia(socialMediaResult);
+      
+    } catch (error) {
       console.log(error)
     }
   }
@@ -155,11 +170,13 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     officeSection,
     allMembers,
     allProjects,
+    socialMedia,
     getAllProjects,
     getAllMembers,
     getWorkPage,
     getOfficePage,
     getHomePage,
+    getSocialMedia,
     isLoading,
     fetchError,
   };

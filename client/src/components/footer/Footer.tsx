@@ -6,9 +6,14 @@ import {
   LinkedInIcon,
   BehanceIcon,
 } from "../icons/Icons";
+import { SocialMediaInt } from "../../constants/types";
 import { Link } from "react-router-dom";
+import { useSanity } from "../../hooks/useSanity";
 
 const Footer = () => {
+
+  const { socialMedia } = useSanity();
+
   return (
     <footer className="flex xs:flex-col sm:flex-col md:flex-row xs:justify-start items-center md:justify-between p-6 border-t border-gray-500">
       <div>
@@ -24,8 +29,8 @@ const Footer = () => {
       </div>
       <div>
         <ul className="flex items-center gap-4 xs:mt-4 sm:mt-4">
-          {/* {data && data.footerMediaLinks
-            ? data.footerMediaLinks.map((media: any, mediaIdx: number) => (
+          {socialMedia
+            ? socialMedia.map((media: SocialMediaInt, mediaIdx: number) => (
                 <li key={mediaIdx}>
                   {media?.socialMedia === "facebook" && (
                     <span>
@@ -68,7 +73,7 @@ const Footer = () => {
                   )}
                 </li>
               ))
-            : ""} */}
+            : ""}
         </ul>
       </div>
     </footer>
