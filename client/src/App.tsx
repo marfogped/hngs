@@ -1,4 +1,4 @@
-import { HomeContainer } from "./containers";
+import { HomeContainer, OfficeContainer, WorkContainer } from "./containers";
 import { Navbar, NotFound } from "./components";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -27,14 +27,14 @@ function App() {
                       path="/"
                       element={<HomeContainer />}
                     />
-                    {/* <Route
+                    <Route
                       path="/work"
-                      element={<HomeContainer sections={homeSection} />}
+                      element={<WorkContainer />}
                     />
                     <Route
                       path="/office"
-                      element={<HomeContainer sections={homeSection} />}
-                    /> */}
+                      element={<OfficeContainer />}
+                    />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

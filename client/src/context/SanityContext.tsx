@@ -1,6 +1,6 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
-import { HomeSections } from "../constants/types";
+import { HomeSections, AllProjectsProps } from "../constants/types";
 
 interface SectionData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,7 +11,7 @@ interface SanityContextProps {
   homeSection: SectionData[];
   workSection: SectionData[];
   officeSection: SectionData[];
-  allProjects: SectionData[];
+  allProjects: AllProjectsProps[];
   allMembers: SectionData[];
   getAllProjects: () => Promise<void>;
   getAllMembers: () => Promise<void>;
@@ -74,7 +74,12 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const getAllProjects = async () => {
     setIsLoading(true);
     try {
-      const projectsQuery = `*[_type == 'hngsProjects'] | order(orderRank)`;
+      const projectsQuery = `*[_type == 'hngsProjects']{
+        ...,
+        "portfolioImages": portfolioImages[]{
+          "imageUrl": asset->url
+        },
+      }| order(orderRank)`;
       const projectsResult = await client.fetch(projectsQuery);
       if(projectsResult) setAllProjects(projectsResult);
 
@@ -106,7 +111,10 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const getWorkPage = async () => {
     setIsLoading(true);
     try {
-      const workQuery = `*[_type == 'hngsWork'] | order(orderRank)`;
+      const workQuery = `*[_type == 'hngsWork']{
+        ...,
+        'heroImage': heroImage.asset->url
+      } | order(orderRank)`;
       const workResult = await client.fetch(workQuery);
       if (workResult) setWorkSection(workResult);
       setIsLoading(false);

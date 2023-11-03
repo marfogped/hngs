@@ -8,3 +8,16 @@ export interface HomeSections {
     contactDescription?: string[];
     footerMediaLinks?: string[];
 }
+
+export interface AllProjectsProps {
+    name: string;
+    description: string,
+    location: string,
+    portfolioImages: string[]
+}
+
+export interface AllProjectsInt {
+    projects: AllProjectsProps[]
+}
+
+  
