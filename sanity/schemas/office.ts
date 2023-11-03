@@ -4,7 +4,7 @@ import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-li
 // --- DOCUMENT TYPES ---
 const HERO = 'hero'
 const ABOUT = 'about'
-const PORTFOLIO = 'portfolio'
+const MEMBERS = 'members'
 const CONTACT = 'contact'
 
 export default {
@@ -19,7 +19,7 @@ export default {
       title: 'Type',
       type: 'string',
       options: {
-        list: [HERO, ABOUT, PORTFOLIO, CONTACT],
+        list: [HERO, ABOUT, MEMBERS, CONTACT],
       },
     },
     {

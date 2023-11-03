@@ -61,7 +61,7 @@ export default {
       options: {
         limit: 8,
       },
-      validation: (Rule : Rule) => Rule.required(),
+      hidden: ({document}: {document: SanityDocument}) => document.type !== PORTFOLIO,
     },
     {
       name: 'contactTitle',

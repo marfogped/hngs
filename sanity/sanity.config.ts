@@ -15,13 +15,13 @@ export default defineConfig({
     deskTool({
       structure: (S, context) => {
         return S.list()
-          .title('type')
+          .title('Pages')
           .items([
-            orderableDocumentListDeskItem({ type: 'hngsHome', title: 'HNGS Home', S, context, }),
-            orderableDocumentListDeskItem({type: 'hngsWork', title: 'HNGS Work', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsOffice',title: 'HNGS Office', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsProjects', title: 'HNGS Projects', S, context}),
-            orderableDocumentListDeskItem({type: 'hngsMembers', title: 'HNGS Members', S, context}),
+            orderableDocumentListDeskItem({ type: 'hngsHome', title: '📄 Home', S, context, }),
+            orderableDocumentListDeskItem({type: 'hngsWork', title: '📄 Work', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsOffice',title: '📄 Office', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsProjects', title: '⚙️ Projects', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsMembers', title: '⚙️ Members', S, context}),
           ])
       },
     }),

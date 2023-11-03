@@ -40,21 +40,6 @@ export default {
       type: 'text',
       hidden: ({document}: {document: SanityDocument}) => document.type !== ABOUT,
     },
-    // {
-    //   name: 'portfolio',
-    //   title: 'Portfolio',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{ type: 'hngsProjects' }],
-    //     },
-    //   ],
-    //   hidden: ({document}: {document: SanityDocument}) => document.type !== PORTFOLIO,
-    //   options: {
-    //     filter: '$type == "hngsProjects"',
-    //   },
-    // },
     {
       name: 'contactTitle',
       title: 'Contact Title',
