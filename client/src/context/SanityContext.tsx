@@ -1,6 +1,6 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
-import { HomeSections, AllProjectsProps } from "../constants/types";
+import { HomeSections, AllProjectsProps, AllMembersProps } from "../constants/types";
 
 interface SectionData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,7 +12,7 @@ interface SanityContextProps {
   workSection: SectionData[];
   officeSection: SectionData[];
   allProjects: AllProjectsProps[];
-  allMembers: SectionData[];
+  allMembers: AllMembersProps[];
   getAllProjects: () => Promise<void>;
   getAllMembers: () => Promise<void>;
   getWorkPage: () => Promise<void>;
@@ -95,7 +95,10 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const getAllMembers = async () => {
     setIsLoading(true);
     try {
-      const membersQuery = `*[_type == 'hngsMembers'] | order(orderRank)`;
+      const membersQuery = `*[_type == 'hngsMembers']{
+        ...,
+        "image": image.asset->url
+      } | order(orderRank)`;
       const membersResult = await client.fetch(membersQuery);
       if(membersResult) setAllMembers(membersResult);
 
@@ -130,7 +133,10 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const getOfficePage = async () => {
     setIsLoading(true);
     try {
-      const officeQuery = `*[_type == 'hngsOffice'] | order(orderRank)`;
+      const officeQuery = `*[_type == 'hngsOffice']{
+        ...,
+        'heroImage': heroImage.asset->url
+      } | order(orderRank)`;
       const officeResult = await client.fetch(officeQuery);
       if (officeResult) setOfficeSection(officeResult);
       setIsLoading(false);

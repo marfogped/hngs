@@ -38,6 +38,14 @@ const Navbar = () => {
       setColor(false);
     }
   };
+
+  const scrollToTop = () => {
+
+    setTimeout(() => {
+      window.scrollTo({ top: 0 });
+    }, 700);
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return () => {
@@ -57,7 +65,10 @@ const Navbar = () => {
             animate={open ? "open" : "closed"}>
                 <div 
                 className="text-4xl font-semibold"
-                onClick={() => {setOpen(!open)}}
+                onClick={() => {
+                  setOpen(!open)
+                  scrollToTop()
+                }}
                 >
                   <Link to={"/"}>
                     HNGS
@@ -78,6 +89,7 @@ const Navbar = () => {
             >
               <ul className="flex items-center justify-between w-full">
                 <li 
+                onClick={() => {scrollToTop()}}
                 className={`${ color ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl" : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"} font-semibold transition-all ease-in duration-500 }`}>
                   <Link to="/">
                     <span>HNGS</span>
@@ -87,6 +99,7 @@ const Navbar = () => {
                   ? NAV_ITEMS.map((item) => (
                       <li
                         key={item.name}
+                        onClick={() => {scrollToTop()}}
                         className={`font-semibold ${
                           item.name === "CONTACT"
                             ? `${

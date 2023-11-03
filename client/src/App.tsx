@@ -1,50 +1,40 @@
 import { HomeContainer, OfficeContainer, WorkContainer } from "./containers";
-import { Navbar, NotFound } from "./components";
+import { Navbar, NotFound, Footer } from "./components";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import Transition from "./components/transition/Transition";
-import { useSanity } from "./hooks/useSanity";
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
-  const { isLoading } = useSanity();
   const location = useLocation();
 
   return (
     <>
+      <AnimatePresence mode="wait">
+        <motion.main key={location.pathname} className="h-full">
+          <Navbar />
+          <Transition />
+          <Routes 
+          location={location} 
+          key={location.pathname}
+          >
+            <Route
+              index
+              element={<HomeContainer />}
+              />
+            <Route
+              path="/work"
+              element={<WorkContainer />}
+              />
 
-      {
-        isLoading ? (
-          <div>loading...</div>
-        ) : (
-          <>
-            <AnimatePresence mode="wait">
-              <motion.div key={location.pathname} className="h-full">
-                <Transition />
-                <Navbar />
-                <main>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={<HomeContainer />}
-                    />
-                    <Route
-                      path="/work"
-                      element={<WorkContainer />}
-                    />
-                    <Route
-                      path="/office"
-                      element={<OfficeContainer />}
-                    />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </main>
-              </motion.div>
-            </AnimatePresence>
-          </>
-        )
-      }
-
-     
+            <Route
+              path="/office"
+              element={<OfficeContainer />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </motion.main>
+      </AnimatePresence>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { FOOTER_ITEMS } from "../../constants";
 import {
   FacebookIcon,
@@ -9,11 +8,7 @@ import {
 } from "../icons/Icons";
 import { Link } from "react-router-dom";
 
-interface FooterProps {
-  data: any;
-}
-
-const Footer: React.FC<FooterProps> = ({ data }) => {
+const Footer = () => {
   return (
     <footer className="flex xs:flex-col sm:flex-col md:flex-row xs:justify-start items-center md:justify-between p-6 border-t border-gray-500">
       <div>
@@ -29,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
       </div>
       <div>
         <ul className="flex items-center gap-4 xs:mt-4 sm:mt-4">
-          {data && data.footerMediaLinks
+          {/* {data && data.footerMediaLinks
             ? data.footerMediaLinks.map((media: any, mediaIdx: number) => (
                 <li key={mediaIdx}>
                   {media?.socialMedia === "facebook" && (
@@ -73,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                   )}
                 </li>
               ))
-            : ""}
+            : ""} */}
         </ul>
       </div>
     </footer>

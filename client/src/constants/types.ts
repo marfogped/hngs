@@ -24,4 +24,14 @@ export interface AllProjectsInt {
     projects: AllProjectsProps[]
 }
 
+export interface AllMembersProps{
+    fullName: string,
+    position: string,
+    image: string,
+}
+
+export interface AllMembersInt{
+    members: AllMembersProps[]
+}
+
   

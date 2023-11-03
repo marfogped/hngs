@@ -25,11 +25,10 @@ const HomeContainer = () => {
                   {homeSection
                     ? homeSection.map((section) => (
                         <Fragment key={section.type}>
-                          {section.type === "hero" && <Hero data={section} />}
+                          {section.type === "hero" && <Hero data={section} type="home" />}
                           {section.type === "about" && <About data={section} />}
                           {section.type === "portfolio" && <Portfolio data={section} />}
                           {section.type === "contact" && <Contact data={section} />}
-                          {section.type === "footer" && <Footer data={section} />}
                         </Fragment>
                       ))
                     : ""}
