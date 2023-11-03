@@ -9,11 +9,15 @@ export interface HomeSections {
     footerMediaLinks?: string[];
 }
 
+interface ImageObject {
+    imageUrl: string;
+}
+
 export interface AllProjectsProps {
     name: string;
     description: string,
     location: string,
-    portfolioImages: string[]
+    portfolioImages: ImageObject[]
 }
 
 export interface AllProjectsInt {
