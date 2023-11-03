@@ -42,7 +42,7 @@ const Links: React.FC<LinksProps> = ({ setOpen, open }) => {
           variants={itemVariants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="text-2xl font-semibold"
+          className="text-6xl font-semibold link link-underline link-underline-black"
           onClick={() => {setOpen(!open)}}
         >
             <Link to={item.to}>

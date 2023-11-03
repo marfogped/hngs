@@ -64,7 +64,7 @@ const Navbar = () => {
             } flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`} 
             animate={open ? "open" : "closed"}>
                 <div 
-                className="text-4xl font-semibold"
+                className={`link link-underline ${open ? "link-underline-black" : "link-underline-white"} text-4xl font-semibold`}
                 onClick={() => {
                   setOpen(!open)
                   scrollToTop()
@@ -74,7 +74,7 @@ const Navbar = () => {
                     HNGS
                   </Link>
                 </div>
-                <motion.div className={`fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
+                <motion.div className={`link link-underline fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white link-underline-black" : "link-underline-white"} transition-all text-black duration-700`} variants={variants}>
                   <Links setOpen={setOpen} open={open} />
                 </motion.div>
                 <ToggleButton setOpen={setOpen} open={open} color={color}/>
@@ -90,7 +90,7 @@ const Navbar = () => {
               <ul className="flex items-center justify-between w-full">
                 <li 
                 onClick={() => {scrollToTop()}}
-                className={`${ color ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl" : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"} font-semibold transition-all ease-in duration-500 }`}>
+                className={`${ color ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl" : "text-white sm:text-5xl lg:text-6xl xl:text-8xl link-underline-white"} link link-underline font-semibold transition-all ease-in duration-500 }`}>
                   <Link to="/">
                     <span>HNGS</span>
                   </Link>
@@ -100,17 +100,17 @@ const Navbar = () => {
                       <li
                         key={item.name}
                         onClick={() => {scrollToTop()}}
-                        className={`font-semibold ${
+                        className={`font-semibold link link-underline ${
                           item.name === "CONTACT"
                             ? `${
                                 color
-                                  ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl"
-                                  : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"
+                                  ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl"
+                                  : "text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl"
                               } stroke-font transition-all ease-in duration-500`
                             : `${
                                 color
-                                  ? "text-black sm:text-2xl lg:text-4xl xl:text-6xl"
-                                  : "text-white sm:text-5xl lg:text-6xl xl:text-8xl"
+                                  ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl"
+                                  : "text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl"
                               } transition-all ease-in duration-500`
                         }`}
                       >

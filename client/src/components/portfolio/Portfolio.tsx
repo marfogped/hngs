@@ -8,7 +8,7 @@ interface PortfolioProps {
 
 const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
   return (
-    <section className="grid md:grid-cols-4 md:grid-rows-2 w-full xs:min-h-[70vh] md:h-[120vh]">
+    <section className="grid md:grid-cols-4 md:grid-rows-2 w-full xs:min-h-[80vh] md:h-[170vh]">
       {data && data.portfolio
         ? data.portfolio.map((image: any, imageIdx: number) => {
           const link = image.name.toLowerCase().replaceAll(" ", "-");

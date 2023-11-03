@@ -21,10 +21,13 @@ const staggerVariants = {
 
 const AllProjects = ({ projects }: AllProjectsInt) => {
   return (
-    <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 xs:mt-20 sm:mt-20">
-      <h2 className="xs:text-3xl sm:text-3xl md:text-5xl mb-20 ml-10">Projects</h2>
+    <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 ">
+      <div className="flex items-center ml-20 mb-32 xs:mt-12 sm:mt-12">
+        <div className="title-line mr-6" />
+        <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">Projects</h2>
+      </div>
       <div 
-      className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xs:gap-3 sm:gap-3 md:gap-6"
+      className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       >
        
         {projects ? (
@@ -37,7 +40,7 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                 initial="hidden"
                 animate="visible"
                 key={projectIdx}
-                className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-50 hover:shadow-md transition-all duration-300 ease-in-out"
+                className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-200 transition-all duration-300 ease-in-out"
               >
                 <Link to={link}>
                   <div className="xs:h-5/6 sm:h-5/6 md:h-[90%]">
