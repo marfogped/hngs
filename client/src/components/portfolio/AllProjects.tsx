@@ -32,7 +32,7 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
         <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">Projects</h2>
       </div>
       <div 
-      className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+      className="gap-y-8 grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       >
        
         {projects ? (
@@ -48,7 +48,7 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                 onClick={()=> {
                   setCurrentProject(project)
                 }}
-                className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-200 transition-all duration-300 ease-in-out"
+                className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-200 transition-all duration-300 ease-in-out pb-2"
               >
                 <Link to={link}>
                   <div className="xs:h-5/6 sm:h-5/6 md:h-[90%]">
