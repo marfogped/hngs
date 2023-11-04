@@ -25,7 +25,7 @@ const Members = ({ members }: AllMembersInt) => {
           <div className="title-line mr-6" />
           <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">Members</h2>
         </div>
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid xs:grid-cols-1 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {members ? (
                 members.map((member, projectIdx) => (
                     <motion.article
