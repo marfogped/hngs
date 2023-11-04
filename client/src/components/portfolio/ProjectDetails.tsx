@@ -29,8 +29,13 @@ const ProjectDetails = () => {
 
   const projects = useRef(null);
   const isInView = useInView(projects)
+  
+  const scrollToTop = () => {
+    window.scrollTo(0,0);
+  }
 
   useEffect(() => {
+    scrollToTop()
     const getData = async () => {
       if(!currentProject.name){
         const projectName = project?.replaceAll("-", " ")
@@ -43,6 +48,8 @@ const ProjectDetails = () => {
       setCurrentProject({_id: '', name: '', description: '', location: '', portfolioImages: []})
     }
   }, [])
+
+    
   return (
     <>
       <header

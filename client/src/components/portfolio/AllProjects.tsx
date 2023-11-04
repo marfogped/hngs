@@ -1,7 +1,7 @@
 import { AllProjectsInt } from "../../constants/types";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-// import { useSanity } from "../../hooks/useSanity";
+import { useSanity } from "../../hooks/useSanity";
 import { AllProjectsProps } from "../../constants/types";
 
 const staggerVariants = {
@@ -23,7 +23,7 @@ const staggerVariants = {
 
 const AllProjects = ({ projects }: AllProjectsInt) => {
 
-  // const { setCurrentProject } = useSanity()
+  const { setCurrentProject } = useSanity()
 
   return (
     <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 ">
@@ -45,7 +45,9 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                 initial="hidden"
                 animate="visible"
                 key={projectIdx}
-                // onClick={()=> {setCurrentProject()}}
+                onClick={()=> {
+                  setCurrentProject(project)
+                }}
                 className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-200 transition-all duration-300 ease-in-out"
               >
                 <Link to={link}>

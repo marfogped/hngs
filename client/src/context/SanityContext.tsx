@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useEffect, Dispatch, SetStateAction } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
 import { HomeSections, AllProjectsProps, AllMembersProps, SocialMediaInt } from "../constants/types";
 
@@ -16,13 +16,7 @@ interface SanityContextProps {
   allMembers: AllMembersProps[];
   socialMedia: SocialMediaInt[];
   getProjectByName: (arg0: string | undefined) => Promise<void>;
-  setCurrentProject: Dispatch<SetStateAction<{
-    _id: string;
-    name: string;
-    description: string;
-    location: string;
-    portfolioImages: never[];
-  }>>; 
+  setCurrentProject: (arg: AllProjectsProps) => void;
   getAllProjects: () => Promise<void>;
   getAllMembers: () => Promise<void>;
   getWorkPage: () => Promise<void>;
@@ -48,7 +42,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [allProjects, setAllProjects] = useState([])
   const [allMembers, setAllMembers] = useState([])
   const [socialMedia, setSocialMedia] = useState([])
-  const [currentProject, setCurrentProject] = useState({_id: "",name: '', description: '', location: '', portfolioImages: []})
+  const [currentProject, setCurrentProject] = useState<AllProjectsProps>({_id: "",name: '', description: '', location: '', portfolioImages: []})
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);
