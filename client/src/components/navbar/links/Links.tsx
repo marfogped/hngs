@@ -47,7 +47,7 @@ const Links: React.FC<LinksProps> = ({ setOpen, open }) => {
 
   return (
     <>
-      <motion.div className="absolute w-full h-full flex flex-col items-start justify-center gap-10 ml-20" variants={variants}>
+      <motion.div className="absolute w-full h-full flex flex-col items-start justify-center gap-10 xs:ml-12 sm:ml-20" variants={variants}>
         {NAV_ITEMS.map((item) => (
           <motion.div
             key={item.name}
