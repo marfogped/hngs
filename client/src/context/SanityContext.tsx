@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useEffect } from "react";
+import React, { useState, ReactNode, useEffect, Dispatch, SetStateAction } from "react";
 import { client } from "../api/sanityClient";
 import { HomeSections, AllProjectsProps, AllMembersProps, SocialMediaInt } from "../constants/types";
 
@@ -12,8 +12,17 @@ interface SanityContextProps {
   workSection: SectionData[];
   officeSection: SectionData[];
   allProjects: AllProjectsProps[];
+  currentProject: AllProjectsProps;
   allMembers: AllMembersProps[];
   socialMedia: SocialMediaInt[];
+  getProjectByName: (arg0: string | undefined) => Promise<void>;
+  setCurrentProject: Dispatch<SetStateAction<{
+    _id: string;
+    name: string;
+    description: string;
+    location: string;
+    portfolioImages: never[];
+  }>>; 
   getAllProjects: () => Promise<void>;
   getAllMembers: () => Promise<void>;
   getWorkPage: () => Promise<void>;
@@ -39,6 +48,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [allProjects, setAllProjects] = useState([])
   const [allMembers, setAllMembers] = useState([])
   const [socialMedia, setSocialMedia] = useState([])
+  const [currentProject, setCurrentProject] = useState({_id: "",name: '', description: '', location: '', portfolioImages: []})
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);
@@ -48,6 +58,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
       const homeQuery = `*[_type == 'hngsHome']{
         ...,
         "portfolio": portfolio[]->{
+          "_id": _id,
           name, 
           description,
           location,
@@ -80,14 +91,16 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     try {
       const projectsQuery = `*[_type == 'hngsProjects']{
         ...,
+        "_id": _id,
         "portfolioImages": portfolioImages[]{
-          "imageUrl": asset->url
+           "imageUrl": asset->url
         },
-      }| order(orderRank)`;
+       }| order(orderRank)`;
       const projectsResult = await client.fetch(projectsQuery);
       if(projectsResult) setAllProjects(projectsResult);
 
       setIsLoading(false);
+      console.log(projectsResult)
       return projectsResult;
     } catch (error) {
       setIsLoading(false);
@@ -95,6 +108,32 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
       console.log(error)
     }
   }
+
+  const getProjectByName = async (projectName: string | undefined) => {
+    setIsLoading(true);
+    try {
+      const projectsQuery = `*[_type == 'hngsProjects']{
+        ...,
+        "portfolioImages": portfolioImages[]{
+           "imageUrl": asset->url
+        },
+       } | order(orderRank)`;
+      const projectResult = await client.fetch(projectsQuery);
+      
+      const filteredProject = projectResult.find(
+       (project: AllProjectsProps) => project.name.toLowerCase() === projectName?.toLowerCase()
+      );
+      
+      if (filteredProject) {
+        setCurrentProject(filteredProject);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setFetchError(true);
+      console.log(error);
+    }
+  };
 
   const getAllMembers = async () => {
     setIsLoading(true);
@@ -171,6 +210,9 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     allMembers,
     allProjects,
     socialMedia,
+    currentProject,
+    setCurrentProject,
+    getProjectByName,
     getAllProjects,
     getAllMembers,
     getWorkPage,

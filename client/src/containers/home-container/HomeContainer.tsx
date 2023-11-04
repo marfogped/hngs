@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from "react";
-import { Hero, About, Portfolio, Contact, Footer } from "../../components";
+import { Hero, About, Portfolio, Contact } from "../../components";
 import { useSanity } from "../../hooks/useSanity";
 import { FetchError } from "../../components";
 

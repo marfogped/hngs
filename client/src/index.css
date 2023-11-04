@@ -11,7 +11,7 @@
     position: relative;
     height: 2px;
     background-color: rgb(159, 162, 165);
-    width: 200px;
+    @apply xs:w-[100px] sm:w-[100px] md:w-[150px] lg:w-[200px]
 }
 
 .title-line::after{
@@ -30,7 +30,7 @@
         width: 0px;
     }
     100%{
-        width: 200px;
+        width: 100%;
     }
 }
 

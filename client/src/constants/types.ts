@@ -14,6 +14,7 @@ interface ImageObject {
 }
 
 export interface AllProjectsProps {
+    _id: string,
     name: string;
     description: string,
     location: string,
