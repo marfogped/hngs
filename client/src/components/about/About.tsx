@@ -16,7 +16,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
       </div>
 
       <div className="col-span-3 xs:mt-8 sm:mt-8 md:mt-0">
-        <p className="xs:text-2xl sm:text-3xl xl:text-5xl">
+        <p className="xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl">
           {data.aboutDescription}
         </p>
       </div>
