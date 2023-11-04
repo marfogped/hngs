@@ -32,7 +32,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
             >
               <Link to={`/work/${link}`} className="h-full">
                 <div className="group relative m-0 flex h-full w-full">
-                  <div className="h-full w-full overflow-hidden grayscale transition duration-300 ease-in-out group-hover:grayscale-0 relative">
+                  <div className="xs:h-[70vh] sm:h-[70vh]  md:h-full w-full overflow-hidden grayscale transition duration-300 ease-in-out group-hover:grayscale-0 relative">
                     <div className="transition duration-300 ease-in-out group-hover:bg-black/40 z-[5] h-full w-full absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"></div>
                     <img src={image?.portfolioImages[0].imageUrl} className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-300 group-hover:scale-110" alt="" />
                   </div>
