@@ -11,7 +11,7 @@
     position: relative;
     height: 2px;
     background-color: rgb(159, 162, 165);
-    @apply xs:w-[100px] sm:w-[100px] md:w-[150px] lg:w-[200px]
+    @apply xs:w-[50px] sm:w-[50px] md:w-[100px] lg:w-[150px] xl:w-[200px]
 }
 
 .title-line::after{
@@ -22,7 +22,8 @@
     z-index: 2;
     height: 2px;
     background-color: rgb(58, 59, 60);
-    animation: lineAnimation 2.5s ease-in-out infinite;
+    animation: lineAnimation 2.5s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 @keyframes lineAnimation {

@@ -22,6 +22,7 @@ export default defineConfig({
             orderableDocumentListDeskItem({type: 'hngsOffice',title: '📄 Office', S, context}),
             orderableDocumentListDeskItem({type: 'hngsProjects', title: '⚙️ Projects', S, context}),
             orderableDocumentListDeskItem({type: 'hngsMembers', title: '⚙️ Members', S, context}),
+            orderableDocumentListDeskItem({type: 'hngsSocialMedia', title: '⚙️ Social Media', S, context}),
           ])
       },
     }),

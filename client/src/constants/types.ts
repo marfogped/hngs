@@ -18,6 +18,8 @@ export interface AllProjectsProps {
     name: string;
     description: string,
     location: string,
+    client: string,
+    year: string,
     portfolioImages: ImageObject[]
 }
 

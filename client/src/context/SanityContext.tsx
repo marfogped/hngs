@@ -42,7 +42,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [allProjects, setAllProjects] = useState([])
   const [allMembers, setAllMembers] = useState([])
   const [socialMedia, setSocialMedia] = useState([])
-  const [currentProject, setCurrentProject] = useState<AllProjectsProps>({_id: "",name: '', description: '', location: '', portfolioImages: []})
+  const [currentProject, setCurrentProject] = useState<AllProjectsProps>({_id: '', client: '', year: '', name: '', description: '', location: '', portfolioImages: []})
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);

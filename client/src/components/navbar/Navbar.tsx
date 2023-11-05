@@ -65,16 +65,18 @@ const Navbar = () => {
             animate={open ? "open" : "closed"}>
                 <div 
                 className={`link link-underline ${open ? "link-underline-black" : "link-underline-white"} text-4xl font-semibold`}
-                onClick={() => {
-                  setOpen(!open)
-                  scrollToTop()
-                }}
                 >
                   <Link to={"/"}>
                     HNGS
                   </Link>
                 </div>
-                <motion.div className={`link link-underline fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}>
+                <motion.div 
+                onClick={() => {
+                  setOpen(!open)
+                  scrollToTop()
+                }}
+                className={`link link-underline fixed top-16 left-0 bottom-0 w-full ${open ? "bg-white" : ""} transition-all text-black duration-700`} variants={variants}
+                >
                   <Links setOpen={setOpen} open={open} />
                 </motion.div>
                 <ToggleButton setOpen={setOpen} open={open} color={color}/>

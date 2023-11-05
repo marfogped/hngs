@@ -1,4 +1,4 @@
-import { SanityDocument, Rule } from '@sanity/types'
+import { SanityDocument } from '@sanity/types'
 import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list'
 
 // --- DOCUMENT TYPES ---
@@ -6,14 +6,6 @@ const HERO = 'hero'
 const ABOUT = 'about'
 const PORTFOLIO = 'portfolio'
 const CONTACT = 'contact'
-const FOOTER = 'footer'
-
-// --- MEDIA TYPES ---
-const FACEBOOK = 'facebook'
-const INSTAGRAM = 'instagram'
-const YOUTUBE = 'youtube'
-const LINKEDIN = 'linkedin'
-const BEHANCE = 'behance'
 
 export default {
  name: 'hngsHome',
@@ -27,7 +19,7 @@ export default {
       title: 'Type',
       type: 'string',
       options: {
-        list: [HERO, ABOUT, PORTFOLIO, FOOTER, CONTACT],
+        list: [HERO, ABOUT, PORTFOLIO, CONTACT],
       },
     },
     {
@@ -74,32 +66,6 @@ export default {
       title: 'Contact Description',
       type: 'string',
       hidden: ({document}: {document: SanityDocument}) => document.type !== CONTACT,
-    },
-    {
-      name: 'footerMediaLinks',
-      title: 'Footer Media Links',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'socialMedia',
-              title: 'Social Media',
-              type: 'string',
-              options: {
-                list: [FACEBOOK, INSTAGRAM, YOUTUBE, LINKEDIN, BEHANCE],
-              },
-            },
-            {
-              name: 'mediaUrl',
-              title: 'Media URL',
-              type: 'string',
-            },
-          ],
-        },
-      ],
-      hidden: ({document}: {document: SanityDocument}) => document.type !== FOOTER,
     },
  ],
  preview: {
