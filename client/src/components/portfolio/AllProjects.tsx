@@ -26,11 +26,11 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
 
   return (
     <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 ">
-      <div className="flex items-center ml-20 mb-12 xs:mt-12 sm:mt-12">
+      {/* <div className="flex items-center ml-20 mb-12 xs:mt-12 sm:mt-12">
         <div className="title-line mr-6" />
         <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">Projects</h2>
-      </div>
-      <div className="gap-y-8 grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      </div> */}
+      <div className="gap-y-4 grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {projects
           ? projects.map((project: AllProjectsProps, projectIdx) => {
               const link = project.name.toLowerCase().replaceAll(" ", "-");
@@ -44,12 +44,12 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                   onClick={() => {
                     setCurrentProject(project);
                   }}
-                  className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] group hover:bg-stone-200 transition-all duration-300 ease-in-out pb-2"
+                  className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] hover:bg-stone-200 transition-all duration-300 ease-in-out pb-2"
                 >
                   <Link to={link}>
                     <div className="xs:h-5/6 sm:h-5/6 md:h-[90%]">
                       <img
-                        className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+                        className="h-full w-full object-cover transition-all duration-300 ease-in-out"
                         src={project.portfolioImages[0]?.imageUrl}
                         alt={`${project.name} image`}
                       />

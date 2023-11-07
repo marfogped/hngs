@@ -27,28 +27,35 @@ const variants = {
 
 const Navbar = () => {
   const { windowWidth } = useWindowDimensions();
-  const [color, setColor] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
   const [hasTouched, setHasTouched] = useState(false);
-
-  const changeColor = () => {
-    if (window.scrollY >= 60) {
-      setColor(true);
-    }
-    if (window.scrollY === 0) {
-      setColor(false);
-    }
-  };
 
   const scrollToTop = () => {
     setTimeout(() => {}, 50);
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeColor);
-    return () => {
-      window.removeEventListener("scroll", changeColor);
-    };
+    const nonHomeOptions = document.querySelectorAll(
+      "ul#navbar-options li:not(#home-option)"
+    );
+    const homeOption = document.getElementById("home-option");
+    const scrollThreshold = 100;
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY > scrollThreshold) {
+        homeOption.style.display = "flex";
+        nonHomeOptions.forEach((option) => {
+          option.classList.add("hidden"); // Agrega la clase "hidden" para ocultar los elementos
+        });
+      } else {
+        homeOption.style.display = "flex";
+        nonHomeOptions.forEach((option) => {
+          option.classList.remove("hidden"); // Elimina la clase "hidden" para mostrar los elementos
+        });
+      }
+    });
   }, []);
 
   return (
@@ -57,12 +64,9 @@ const Navbar = () => {
         <>
           <motion.nav
             className={` ${
-              color
-                ? `bg-white text-black shadow-md delay-[400ms]`
-                : `${
-                    open ? "bg-white text-black " : "text-white bg-transparent"
-                  }`
-            } flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`}
+              open ? "bg-white text-black " : "text-white bg-transparent"
+            }
+            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`}
             animate={open ? "open" : "closed"}
           >
             <div
@@ -84,31 +88,30 @@ const Navbar = () => {
                   setHasTouched(true);
                 }
               }}
-              className={`link link-underline fixed top-16 right-0 bottom-0 w-full text-black bg-white`}
+              className={`link link-underline fixed top-[88px] right-0 bottom-0 w-full text-black bg-white`}
               variants={variants}
             >
               <Links setOpen={setOpen} open={open} />
             </motion.div>
-            <ToggleButton setOpen={setOpen} open={open} color={color} />
+            <ToggleButton setOpen={setOpen} open={open} />
           </motion.nav>
         </>
       ) : (
         <>
           <nav
-            className={`${
-              color ? "bg-white shadow-md delay-[400ms]" : ""
-            } flex items-center w-full p-8 fixed transition-all ease-in z-10`}
+            className={`flex items-center w-full p-8 fixed transition-all ease-in z-10`}
           >
-            <ul className="flex items-center justify-between w-full">
+            <ul
+              id="navbar-options"
+              className="flex items-center justify-between w-full group"
+            >
               <li
                 onClick={() => {
                   scrollToTop();
                 }}
-                className={`${
-                  color
-                    ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl"
-                    : "text-white sm:text-5xl lg:text-6xl xl:text-8xl link-underline-white"
-                } link link-underline font-semibold transition-all ease-in duration-500 }`}
+                id="home-option"
+                className={`text-white sm:text-5xl lg:text-6xl xl:text-8xl link-underline-white
+                link link-underline font-semibold transition-all ease-in duration-300 group-hover:flex`}
               >
                 <Link to="/">
                   <span>HNGS</span>
@@ -121,18 +124,11 @@ const Navbar = () => {
                       onClick={() => {
                         scrollToTop();
                       }}
+                      id={`${item.name.toLowerCase()}-option`}
                       className={`font-semibold link link-underline ${
                         item.name === "CONTACT"
-                          ? `${
-                              color
-                                ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl"
-                                : "text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl"
-                            } stroke-font transition-all ease-in duration-500`
-                          : `${
-                              color
-                                ? "text-black link-underline-black sm:text-2xl lg:text-4xl xl:text-6xl"
-                                : "text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl"
-                            } transition-all ease-in duration-500`
+                          ? `text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all ease-in duration-500`
+                          : `text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl transition-all ease-in duration-500`
                       }`}
                     >
                       <Link to={item.to}>

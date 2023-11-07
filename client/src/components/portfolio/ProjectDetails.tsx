@@ -22,6 +22,30 @@ const slideUp = {
   },
 };
 
+interface ImageProps {
+  imageUrl: string;
+}
+
+interface SingleProps {
+  item: ImageProps;
+  index: number;
+  isInView: boolean;
+}
+
+const Single = ({ item, index, isInView }: SingleProps) => {
+  return (
+    <motion.div
+      variants={slideUp}
+      custom={index}
+      animate={isInView ? "open" : "closed"}
+      key={index}
+      className="h-[90vh] w-full snap-end"
+    >
+      <img src={item.imageUrl} className="w-full h-full object-cover" alt="" />
+    </motion.div>
+  );
+};
+
 const ProjectDetails = () => {
   const { getProjectByName, currentProject, setCurrentProject } = useSanity();
   const { project } = useParams();
@@ -112,19 +136,7 @@ const ProjectDetails = () => {
         >
           {currentProject?.portfolioImages?.length
             ? currentProject.portfolioImages.map((image, imageIdx) => (
-                <motion.div
-                  variants={slideUp}
-                  custom={imageIdx}
-                  animate={isInView ? "open" : "closed"}
-                  key={imageIdx}
-                  className="h-[90vh] w-full snap-end"
-                >
-                  <img
-                    src={image.imageUrl}
-                    className="w-full h-full object-cover"
-                    alt=""
-                  />
-                </motion.div>
+                <Single item={image} index={imageIdx} isInView={isInView} />
               ))
             : ""}
         </div>
