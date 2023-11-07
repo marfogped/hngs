@@ -5,6 +5,7 @@ import projectDescription from './project-description'
 import projects from './projects'
 import members from './members'
 import socialMedia from './social-media'
+import contact from './contact'
 
 export const schemaTypes = [
   home,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   projects,
   members,
   socialMedia,
+  contact,
 ]
