@@ -67,7 +67,7 @@ const ProjectDetails = () => {
         <div className="bg-black/40 h-[60vh] w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       </header>
 
-      <section className="relative">
+      <section className="relative min-h-max">
         <div className="flex items-center justify-start xs:ml-10 sm:ml-10 md:ml-20 xs:mb-6 sm:mb-6 md:mb-12 xs:mt-12 sm:mt-12 md:mt-24">
           <div className="title-line mr-6" />
           <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">
@@ -75,10 +75,10 @@ const ProjectDetails = () => {
           </h2>
         </div>
 
-        <div className="flex xs:flex-col sm:flex-col md:flex-row w-full xs:md:min-h-min sm:md:min-h-min md:min-h-[80vh] max-h-max xs:p-0 sm:p-0 md:p-8">
+        <div className="flex xs:flex-col sm:flex-col md:flex-row w-full xs:md:min-h-min sm:md:min-h-min md:min-h-[80vh] md:max-h-screen xs:p-0 sm:p-0 md:p-8">
           <div className="flex flex-col items-center justify-center xs:w-full sm:w-full md:w-1/2 p-4">
             <p className="xs:text-lg sm:text-lg smd:text-2xl">
-              {currentProject.description}
+              {currentProject?.description}
             </p>
 
             <div className="border-t border-black xs:mt-5 sm:mt-5 lg:mt-12 w-full py-2">
@@ -97,15 +97,17 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          <img
-            src={currentProject?.portfolioImages[0]?.imageUrl}
-            className="xs:w-full sm:w-full xs:h-1/2 sm:h-1/2 md:h-full md:w-1/2 object-cover"
-            alt=""
-          />
+          <div className="md:min-h-[80vh] md:max-h-screen xs:w-full sm:w-full md:w-1/2">
+            <img
+              src={currentProject?.portfolioImages[0]?.imageUrl}
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
         </div>
 
         <div
-          className="w-full grid md:grid-cols-3 xs:mt-3 sm:mt-3 md:mt-0 xs:grid-cols-1 sm:grid-cols-1 xs:gap-3 sm:gap-3 md:gap-8 xs:p-0 sm:p-0 md:p-8"
+          className="w-full h-[90vh] flex flex-col snap-y snap-mandatory overflow-y-scroll  "
           ref={projects}
         >
           {currentProject?.portfolioImages?.length
@@ -115,11 +117,11 @@ const ProjectDetails = () => {
                   custom={imageIdx}
                   animate={isInView ? "open" : "closed"}
                   key={imageIdx}
-                  className="h-full"
+                  className="h-[90vh] w-full snap-end"
                 >
                   <img
                     src={image.imageUrl}
-                    className="xs:h-72 sm:h-72 md:h-full xs:w-full sm:w-full object-cover"
+                    className="w-full h-full object-cover"
                     alt=""
                   />
                 </motion.div>

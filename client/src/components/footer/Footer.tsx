@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { useSanity } from "../../hooks/useSanity";
 
 const Footer = () => {
-
   const { socialMedia } = useSanity();
 
   return (
@@ -20,15 +19,20 @@ const Footer = () => {
         <ul className="flex items-center gap-6">
           {FOOTER_ITEMS
             ? FOOTER_ITEMS.map((link, linkIdx) => (
-                <li key={linkIdx} className="underline text-sm font-normal">
-                  <Link to={link.to}>{link.name}</Link>
+                <li
+                  key={linkIdx}
+                  className="xs:text-sm sm:text-sm md:text-base lg:text-lg font-normal"
+                >
+                  <div className="link-underline link-underline-black">
+                    <Link to={link.to}>{link.name}</Link>
+                  </div>
                 </li>
               ))
             : ""}
         </ul>
       </div>
-      <div>
-        <ul className="flex items-center gap-4 xs:mt-4 sm:mt-4">
+      <div className="flex items-center xs:mt-4 sm:mt-4 md:mt-0">
+        <ul className="flex items-center gap-4">
           {socialMedia
             ? socialMedia.map((media: SocialMediaInt, mediaIdx: number) => (
                 <li key={mediaIdx}>

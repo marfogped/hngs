@@ -6,6 +6,8 @@ import { FetchError } from "../../components";
 const HomeContainer = () => {
   const { getHomePage, homeSection, isLoading, fetchError } = useSanity();
 
+  window.scrollTo({ top: 0 });
+
   useEffect(() => {
     if (!homeSection.length) getHomePage();
   });

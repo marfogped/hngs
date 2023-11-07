@@ -4,6 +4,8 @@ import { Hero, About, Contact, AllProjects, Loading } from "../../components";
 import { FetchError } from "../../components";
 
 const WorkContainer = () => {
+  window.scrollTo({ top: 0 });
+
   const {
     getWorkPage,
     getAllProjects,
@@ -17,8 +19,6 @@ const WorkContainer = () => {
     if (!workSection.length) getWorkPage();
     if (!allProjects.length) getAllProjects();
   });
-
-  console.log(allProjects);
 
   return (
     <>

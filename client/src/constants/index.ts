@@ -6,7 +6,7 @@ export const NAV_ITEMS = [
 
 export const FOOTER_ITEMS = [
   { name: "About", to: "/" },
-  { name: "Team", to: "/" },
-  { name: "Projects", to: "/" },
+  { name: "Team", to: "/office" },
+  { name: "Projects", to: "/work" },
   { name: "Privacy & Legal Terms", to: "/" },
 ];

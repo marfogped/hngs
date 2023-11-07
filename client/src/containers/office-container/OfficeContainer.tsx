@@ -4,6 +4,8 @@ import { Hero, About, Contact, Members, Loading } from "../../components";
 import { FetchError } from "../../components";
 
 const OfficeContainer = () => {
+  window.scrollTo({ top: 0 });
+
   const {
     getOfficePage,
     getAllMembers,
@@ -17,8 +19,6 @@ const OfficeContainer = () => {
     if (!officeSection.length) getOfficePage();
     if (!allMembers.length) getAllMembers();
   });
-
-  console.log(allMembers);
 
   return (
     <>

@@ -1,6 +1,12 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import { client } from "../api/sanityClient";
-import { HomeSections, AllProjectsProps, AllMembersProps, SocialMediaInt } from "../constants/types";
+import {
+  HomeSections,
+  AllProjectsProps,
+  AllMembersProps,
+  SocialMediaInt,
+  ContactSection,
+} from "../constants/types";
 
 interface SectionData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,6 +17,7 @@ interface SanityContextProps {
   homeSection: SectionData[];
   workSection: SectionData[];
   officeSection: SectionData[];
+  contactSection: ContactSection[];
   allProjects: AllProjectsProps[];
   currentProject: AllProjectsProps;
   allMembers: AllMembersProps[];
@@ -22,6 +29,7 @@ interface SanityContextProps {
   getWorkPage: () => Promise<void>;
   getOfficePage: () => Promise<void>;
   getSocialMedia: () => Promise<void>;
+  getContactPage: () => Promise<void>;
   getHomePage: () => Promise<HomeSections[]>;
   isLoading: boolean;
   fetchError: boolean;
@@ -38,11 +46,20 @@ export const SanityContext = React.createContext<SanityContextProps | null>(
 export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [homeSection, setHomeSection] = useState<HomeSections[]>([]);
   const [workSection, setWorkSection] = useState([]);
+  const [contactSection, setContactSection] = useState([]);
   const [officeSection, setOfficeSection] = useState([]);
-  const [allProjects, setAllProjects] = useState([])
-  const [allMembers, setAllMembers] = useState([])
-  const [socialMedia, setSocialMedia] = useState([])
-  const [currentProject, setCurrentProject] = useState<AllProjectsProps>({_id: '', client: '', year: '', name: '', description: '', location: '', portfolioImages: []})
+  const [allProjects, setAllProjects] = useState([]);
+  const [allMembers, setAllMembers] = useState([]);
+  const [socialMedia, setSocialMedia] = useState([]);
+  const [currentProject, setCurrentProject] = useState<AllProjectsProps>({
+    _id: "",
+    client: "",
+    year: "",
+    name: "",
+    description: "",
+    location: "",
+    portfolioImages: [],
+  });
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);
@@ -56,6 +73,8 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
           name, 
           description,
           location,
+          year,
+          client,
           "portfolioImages": portfolioImages[]{
             "imageUrl": asset->url
           },
@@ -66,7 +85,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
       if (homeResult) setHomeSection(homeResult);
       setIsLoading(false);
 
-      return homeResult
+      return homeResult;
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
@@ -77,8 +96,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   useEffect(() => {
     getHomePage();
     getSocialMedia();
-  }, [])
-  
+  }, []);
 
   const getAllProjects = async () => {
     setIsLoading(true);
@@ -91,17 +109,37 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
         },
        }| order(orderRank)`;
       const projectsResult = await client.fetch(projectsQuery);
-      if(projectsResult) setAllProjects(projectsResult);
+      if (projectsResult) setAllProjects(projectsResult);
 
       setIsLoading(false);
-      console.log(projectsResult)
       return projectsResult;
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+
+  const getContactPage = async () => {
+    try {
+      setIsLoading(true);
+      const contactQuery = `*[_type == 'hngsContact']{
+        ...,
+        "background": background.asset->url
+      } | order(orderRank)`;
+      const contactResult = await client.fetch(contactQuery);
+
+      if (contactResult) {
+        setIsLoading(false);
+        setContactSection(contactResult);
+      }
+      return contactResult;
+    } catch (error) {
+      setIsLoading(false);
+      setFetchError(true);
+      console.log(error);
+    }
+  };
 
   const getProjectByName = async (projectName: string | undefined) => {
     setIsLoading(true);
@@ -113,11 +151,12 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
         },
        } | order(orderRank)`;
       const projectResult = await client.fetch(projectsQuery);
-      
+
       const filteredProject = projectResult.find(
-       (project: AllProjectsProps) => project.name.toLowerCase() === projectName?.toLowerCase()
+        (project: AllProjectsProps) =>
+          project.name.toLowerCase() === projectName?.toLowerCase()
       );
-      
+
       if (filteredProject) {
         setCurrentProject(filteredProject);
         setIsLoading(false);
@@ -137,27 +176,26 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
         "image": image.asset->url
       } | order(orderRank)`;
       const membersResult = await client.fetch(membersQuery);
-      if(membersResult) setAllMembers(membersResult);
-      
+      if (membersResult) setAllMembers(membersResult);
+
       setIsLoading(false);
       return membersResult;
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
-      console.log(error)
+      console.log(error);
     }
-  }
-  
+  };
+
   const getSocialMedia = async () => {
     try {
       const socialMediaQuery = `*[_type == 'hngsSocialMedia'] | order(orderRank)`;
       const socialMediaResult = await client.fetch(socialMediaQuery);
-      if(socialMediaResult) setSocialMedia(socialMediaResult);
-      
+      if (socialMediaResult) setSocialMedia(socialMediaResult);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const getWorkPage = async () => {
     setIsLoading(true);
@@ -174,9 +212,9 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const getOfficePage = async () => {
     setIsLoading(true);
@@ -193,9 +231,9 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     } catch (error) {
       setIsLoading(false);
       setFetchError(true);
-      console.log(error)
+      console.log(error);
     }
-  } 
+  };
 
   const value: SanityContextProps = {
     homeSection,
@@ -205,6 +243,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     allProjects,
     socialMedia,
     currentProject,
+    contactSection,
     setCurrentProject,
     getProjectByName,
     getAllProjects,
@@ -213,6 +252,7 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     getOfficePage,
     getHomePage,
     getSocialMedia,
+    getContactPage,
     isLoading,
     fetchError,
   };

@@ -6,9 +6,11 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ data }) => {
-
   return (
-    <section className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 h-[60vh] xl:w-3/4 xs:w-full mx-auto place-content-center">
+    <section
+      id="about"
+      className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 min-h-[60vh] max-h-max xl:w-3/4 xs:w-full mx-auto place-content-center"
+    >
       <div className="col-span-1">
         <h1 className="text-xl font-semibold">
           {data.aboutTitle.toUpperCase()}
@@ -16,9 +18,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
       </div>
 
       <div className="col-span-3 xs:mt-8 sm:mt-8 md:mt-0">
-        <p className="xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl">
-          {data.aboutDescription}
-        </p>
+        <p className="xs:text-2xl sm:text-3xl">{data.aboutDescription}</p>
       </div>
     </section>
   );
