@@ -1,36 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Contact } from "../index";
 import { useSanity } from "../../hooks/useSanity";
-import { motion, useInView } from "framer-motion";
 import ParallaxGallery from "./ParallaxGallery";
 import "./Portfolio.css";
-
-const slideUp = {
-  initial: {
-    y: "10%",
-    opacity: 0,
-  },
-  open: (i: number) => ({
-    y: "0%",
-    opacity: 1,
-    transition: { duration: 0.5, delay: 0.2 * i },
-  }),
-  closed: {
-    y: "10%",
-    opacity: 0,
-    transition: { duration: 0.5 },
-  },
-};
 
 const ProjectDetails = () => {
   const { getProjectByName, currentProject, setCurrentProject } = useSanity();
   const { project } = useParams();
-
-  const projects = useRef(null);
-  const isInView = useInView(projects);
-
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -108,15 +86,8 @@ const ProjectDetails = () => {
             />
           </div>
         </div>
-        <div
-          className="w-full flex flex-col"
-          ref={projects}
-        >
-          <motion.div
-          variants={slideUp}
-          animate={isInView ? "open" : "closed"}
-          className="h-min w-full"
-          >
+        <div className="w-full flex flex-col">
+          <div className="h-min w-full">
             {
               currentProject?.portfolioImages?.length
                 ? currentProject.portfolioImages.map((image, imageIdx) => (
@@ -124,7 +95,7 @@ const ProjectDetails = () => {
                   ))
                 : ""
             }
-          </motion.div>
+          </div>
         </div>
         <Contact
           data={{
