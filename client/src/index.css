@@ -1,6 +1,63 @@
 @import url("./assets/css/base.css");
 @import url("./assets/css/reset.css");
 
+.stroke-font{
+    -webkit-text-fill-color: transparent; 
+    color: transparent;
+    -webkit-text-stroke: 3px;
+}
+
+.title-line{
+    position: relative;
+    height: 2px;
+    background-color: rgb(159, 162, 165);
+    @apply xs:w-[50px] sm:w-[50px] md:w-[100px] lg:w-[150px] xl:w-[200px]
+}
+
+.title-line::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 2;
+    height: 2px;
+    background-color: rgb(58, 59, 60);
+    animation: lineAnimation 2.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes lineAnimation {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .5s ease-in-out;
+}
+
+.link-underline-black {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000)
+}
+
+.link-underline-white {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff)
+}
+
+.link-underline:hover {
+    background-size: 100% 3px;
+    background-position: 0 100%
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+

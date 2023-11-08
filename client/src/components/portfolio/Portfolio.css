@@ -1,0 +1,14 @@
+.parallax-section {
+    height: 100vh; /* Altura del contenedor, ajusta según tus necesidades */
+    overflow: auto; /* Hacer que haya scroll si el contenido es más largo que la altura */
+    perspective: 1px; /* Añadir perspectiva para el efecto parallax */
+  }
+  
+  .parallax {
+    height: 100vh; /* Altura de cada imagen, ajusta según tus necesidades */
+    background-attachment: fixed; /* Hacer que la imagen se quede fija */
+    background-position: center; /* Posición del fondo */
+    background-repeat: no-repeat; /* Evitar la repetición de la imagen */
+    background-size: cover; /* Ajustar el tamaño del fondo */
+    transform: translateZ(-1px) scale(2); /* Aplicar el efecto de parallax */
+  }
