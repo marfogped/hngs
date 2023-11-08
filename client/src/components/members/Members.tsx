@@ -21,10 +21,6 @@ const staggerVariants = {
 const Members = ({ members }: AllMembersInt) => {
   return (
     <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 xs:mt-20 sm:mt-20">
-      {/* <div className="flex items-center ml-20 mb-20 xs:mt-12 sm:mt-12">
-          <div className="title-line mr-6" />
-          <h2 className="xs:text-3xl sm:text-3xl md:text-6xl">Members</h2>
-        </div> */}
       <div className="grid xs:grid-cols-1 gap-y-8 gap-x-[5px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {members
           ? members.map((member, projectIdx) => (

@@ -29,34 +29,69 @@ const Navbar = () => {
   const { windowWidth } = useWindowDimensions();
   const [open, setOpen] = useState(false);
   const [hasTouched, setHasTouched] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const scrollToTop = () => {
     setTimeout(() => {}, 50);
   };
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     const nonHomeOptions = document.querySelectorAll(
       "ul#navbar-options li:not(#home-option)"
     );
-    const homeOption = document.getElementById("home-option");
+    const homeOption = document.getElementById("navbar-options");
+
     const scrollThreshold = 100;
 
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       const scrollY = window.scrollY;
 
       if (scrollY > scrollThreshold) {
-        homeOption.style.display = "flex";
         nonHomeOptions.forEach((option) => {
-          option.classList.add("hidden"); // Agrega la clase "hidden" para ocultar los elementos
+          option.classList.add("opacity-0");
         });
       } else {
-        homeOption.style.display = "flex";
         nonHomeOptions.forEach((option) => {
-          option.classList.remove("hidden"); // Elimina la clase "hidden" para mostrar los elementos
+          option.classList.remove("opacity-0");
         });
       }
-    });
-  }, []);
+    };
+
+    const handleHover = () => {
+      nonHomeOptions.forEach((option) => {
+        if (option instanceof HTMLElement) {
+          option.style.opacity = "1";
+        }
+      });
+    };
+
+    const handleHoverOut = () => {
+      nonHomeOptions.forEach((option) => {
+        if (option instanceof HTMLElement) {
+          option.style.opacity = "";
+        }
+      });
+    };
+
+    if (homeOption) {
+      homeOption.addEventListener("mouseover", handleHover);
+      homeOption.addEventListener("mouseout", handleHoverOut);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (homeOption) {
+        homeOption.removeEventListener("mouseover", handleHover);
+        homeOption.removeEventListener("mouseout", handleHoverOut);
+      }
+    };
+  }, [isMounted]);
 
   return (
     <>
@@ -64,9 +99,9 @@ const Navbar = () => {
         <>
           <motion.nav
             className={` ${
-              open ? "bg-white text-black " : "text-white bg-transparent"
+              open ? "bg-white" : "bg-transparent"
             }
-            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`}
+            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10 text-black`}
             animate={open ? "open" : "closed"}
           >
             <div
@@ -99,19 +134,19 @@ const Navbar = () => {
       ) : (
         <>
           <nav
-            className={`flex items-center w-full p-8 fixed transition-all ease-in z-10`}
+            className={`flex items-center w-full p-8 fixed transition-all duration-300 ease-in-out  z-10`}
           >
             <ul
               id="navbar-options"
-              className="flex items-center justify-between w-full group"
+              className="flex items-center justify-between w-full"
             >
               <li
                 onClick={() => {
                   scrollToTop();
                 }}
                 id="home-option"
-                className={`text-white sm:text-5xl lg:text-6xl xl:text-8xl link-underline-white
-                link link-underline font-semibold transition-all ease-in duration-300 group-hover:flex`}
+                className={`text-black sm:text-5xl lg:text-6xl xl:text-8xl link-underline-black
+                link link-underline font-semibold transition-all duration-300 ease-in-out`}
               >
                 <Link to="/">
                   <span>HNGS</span>
@@ -127,8 +162,8 @@ const Navbar = () => {
                       id={`${item.name.toLowerCase()}-option`}
                       className={`font-semibold link link-underline ${
                         item.name === "CONTACT"
-                          ? `text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all ease-in duration-500`
-                          : `text-white link-underline-white sm:text-5xl lg:text-6xl xl:text-8xl transition-all ease-in duration-500`
+                          ? `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all duration-300 ease-in-out`
+                          : `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl transition-all duration-300 ease-in-out`
                       }`}
                     >
                       <Link to={item.to}>
