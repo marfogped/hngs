@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { Contact } from "../index";
 import { useSanity } from "../../hooks/useSanity";
 import { motion, useInView } from "framer-motion";
+import ParallaxGallery from "./ParallaxGallery";
+import "./Portfolio.css";
 
 const slideUp = {
   initial: {
@@ -22,36 +24,13 @@ const slideUp = {
   },
 };
 
-interface ImageProps {
-  imageUrl: string;
-}
-
-interface SingleProps {
-  item: ImageProps;
-  index: number;
-  isInView: boolean;
-}
-
-const Single = ({ item, index, isInView }: SingleProps) => {
-  return (
-    <motion.div
-      variants={slideUp}
-      custom={index}
-      animate={isInView ? "open" : "closed"}
-      key={index}
-      className="h-[90vh] w-full snap-end"
-    >
-      <img src={item.imageUrl} className="w-full h-full object-cover" alt="" />
-    </motion.div>
-  );
-};
-
 const ProjectDetails = () => {
   const { getProjectByName, currentProject, setCurrentProject } = useSanity();
   const { project } = useParams();
 
   const projects = useRef(null);
   const isInView = useInView(projects);
+
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -88,7 +67,7 @@ const ProjectDetails = () => {
           backgroundImage: `url(${currentProject?.portfolioImages[0]?.imageUrl})`,
         }}
       >
-        <div className="bg-black/40 h-[60vh] w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <div className="h-[60vh] w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       </header>
 
       <section className="relative min-h-max">
@@ -121,7 +100,7 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          <div className="md:min-h-[80vh] md:max-h-screen xs:w-full sm:w-full md:w-1/2">
+          <div className="md:min-h-[80vh] md:max-h-screen xs:hidden sm:hidden md:flex md:w-1/2">
             <img
               src={currentProject?.portfolioImages[0]?.imageUrl}
               className="w-full h-full object-cover"
@@ -129,18 +108,24 @@ const ProjectDetails = () => {
             />
           </div>
         </div>
-
         <div
-          className="w-full h-[90vh] flex flex-col snap-y snap-mandatory overflow-y-scroll  "
+          className="w-full flex flex-col"
           ref={projects}
         >
-          {currentProject?.portfolioImages?.length
-            ? currentProject.portfolioImages.map((image, imageIdx) => (
-                <Single item={image} index={imageIdx} isInView={isInView} />
-              ))
-            : ""}
+          <motion.div
+          variants={slideUp}
+          animate={isInView ? "open" : "closed"}
+          className="h-min w-full"
+          >
+            {
+              currentProject?.portfolioImages?.length
+                ? currentProject.portfolioImages.map((image, imageIdx) => (
+                    <ParallaxGallery key={imageIdx} image={image.imageUrl} />                  
+                  ))
+                : ""
+            }
+          </motion.div>
         </div>
-
         <Contact
           data={{
             contactTitle: "Want to get in touch?",
