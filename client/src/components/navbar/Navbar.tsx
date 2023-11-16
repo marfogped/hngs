@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "../../constants";
 import ToggleButton from "./toggle-button/ToggleButton";
 import Links from "./links/Links";
@@ -28,12 +28,15 @@ const variants = {
 const Navbar = () => {
   const { windowWidth } = useWindowDimensions();
   const [open, setOpen] = useState(false);
-  const [hasTouched, setHasTouched] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
+  const location = useLocation();
 
   const scrollToTop = () => {
     setTimeout(() => {}, 50);
   };
+
+  console.log(location)
 
   useEffect(() => {
     setIsMounted(true);
@@ -98,10 +101,10 @@ const Navbar = () => {
       {windowWidth < 767 ? (
         <>
           <motion.nav
-            className={` ${
-              open ? "bg-white" : "bg-transparent"
-            }
-            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10 text-black`}
+            className={` ${ open ? `bg-white text-black` 
+            :  `bg-transparent ${location.pathname === "/contact" ? "text-white" : "text-black"}` 
+          }
+            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`}
             animate={open ? "open" : "closed"}
           >
             <div
@@ -117,11 +120,8 @@ const Navbar = () => {
             </div>
             <motion.div
               onTouchStart={() => {
-                if (!hasTouched) {
                   setOpen(!open);
                   scrollToTop();
-                  setHasTouched(true);
-                }
               }}
               className={`link link-underline fixed top-[88px] right-0 bottom-0 w-full text-black bg-white`}
               variants={variants}
@@ -145,7 +145,7 @@ const Navbar = () => {
                   scrollToTop();
                 }}
                 id="home-option"
-                className={`text-black sm:text-5xl lg:text-6xl xl:text-8xl link-underline-black
+                className={` ${location.pathname === "/contact" ? "text-white" : "text-black"} sm:text-5xl lg:text-6xl xl:text-8xl link-underline-black
                 link link-underline font-semibold transition-all duration-300 ease-in-out`}
               >
                 <Link to="/">
@@ -162,8 +162,8 @@ const Navbar = () => {
                       id={`${item.name.toLowerCase()}-option`}
                       className={`font-semibold link link-underline ${
                         item.name === "CONTACT"
-                          ? `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all duration-300 ease-in-out`
-                          : `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl transition-all duration-300 ease-in-out`
+                          ? `${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all duration-300 ease-in-out`
+                          : `${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl transition-all duration-300 ease-in-out`
                       }`}
                     >
                       <Link to={item.to}>
