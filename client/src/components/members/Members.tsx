@@ -21,36 +21,45 @@ const staggerVariants = {
 const Members = ({ members }: AllMembersInt) => {
   return (
     <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 xs:mt-20 sm:mt-20">
-      <div className="grid xs:grid-cols-1 gap-y-8 gap-x-[5px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {members
-          ? members.map((member, projectIdx) => (
-              <motion.article
-                custom={projectIdx}
-                variants={staggerVariants}
-                initial="hidden"
-                animate="visible"
-                key={projectIdx}
-                className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh]"
-              >
-                <div className="xs:h-5/6 sm:h-5/6 md:h-[90%]">
-                  <img
-                    className="h-full w-full object-cover"
-                    src={member.image}
-                    alt={`${member.fullName} image`}
-                  />
-                </div>
-                <div className="xs:h-1/6 sm:h-1/6 md:h-[10%] xs:pt-3 xs:pl-3 sm:pt-3 sm:pl-3">
-                  <span className="block font-medium text-black lg:text-xl">
-                    {member.fullName}
-                  </span>
-                  <span className="block font-normal text-stone-600">
-                    {member.position}
-                  </span>
-                </div>
-              </motion.article>
-            ))
-          : ""}
-      </div>
+      { members
+        ? members.map((membersArr, membersArrIdx) => (
+            <div 
+            className={`${membersArr.members.length === 4 ? `grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4` : `grid xs:grid-cols-1 sm:grid-cols-2 xs:w-full sm:w-full md:w-1/2`} gap-y-8 gap-x-[5px]`}
+            key={membersArrIdx}
+            >
+              {
+                membersArr.members.length ? (
+                  membersArr.members.map((member, memberIdx) => (
+                  <motion.article
+                    key={memberIdx} 
+                    variants={staggerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="h-[65vh]"
+                  >
+                    <div className="h-[85%]">
+                      <img
+                        className="h-full w-full flex object-cover"
+                        src={member.image}
+                        alt={`${member.fullName} image`}
+                      />
+                    </div>
+                    <div className="xs:h-1/6 sm:h-1/6 md:h-[10%] xs:pt-3 xs:pl-3 sm:pt-3 sm:pl-3">
+                      <span className="block font-medium text-black lg:text-xl">
+                        {member.fullName}
+                      </span>
+                      <span className="block font-normal text-stone-600">
+                        {member.position}
+                      </span>
+                    </div>
+                  </motion.article>
+                  ))
+                ) : ("")
+              }  
+            </div>
+
+          ))
+        : ""}
     </section>
   );
 };

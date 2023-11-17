@@ -173,7 +173,10 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
     try {
       const membersQuery = `*[_type == 'hngsMembers']{
         ...,
-        "image": image.asset->url
+        "members": members[]{
+          ...,
+          "image": image.asset->url
+        }
       } | order(orderRank)`;
       const membersResult = await client.fetch(membersQuery);
       if (membersResult) setAllMembers(membersResult);
