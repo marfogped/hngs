@@ -53,11 +53,11 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
   const [socialMedia, setSocialMedia] = useState([]);
   const [currentProject, setCurrentProject] = useState<AllProjectsProps>({
     _id: "",
-    client: "",
-    year: "",
+    developer: "",
+    architect: "",
     name: "",
     description: "",
-    location: "",
+    sizeAndCost: "",
     portfolioImages: [],
   });
 
@@ -72,9 +72,9 @@ export const SanityProvider = ({ children }: SanityProviderProps) => {
           "_id": _id,
           name, 
           description,
-          location,
-          year,
-          client,
+          developer,
+          architect,
+          sizeAndCost,
           "portfolioImages": portfolioImages[]{
             "imageUrl": asset->url
           },

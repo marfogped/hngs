@@ -26,11 +26,11 @@ const ProjectDetails = () => {
     return () => {
       setCurrentProject({
         _id: "",
-        client: "",
-        year: "",
+        developer: "",
+        architect: "",
         name: "",
         description: "",
-        location: "",
+        sizeAndCost: "",
         portfolioImages: [],
       });
     };
@@ -62,18 +62,18 @@ const ProjectDetails = () => {
             </p>
 
             <div className="border-t border-black xs:mt-5 sm:mt-5 lg:mt-12 w-full py-2">
-              <h3 className="font-semibold">CLIENT</h3>
-              <p>{currentProject?.client}</p>
+              <h3 className="font-semibold">DEVELOPER</h3>
+              <p>{currentProject?.developer}</p>
             </div>
 
             <div className="border-t border-black w-full py-2">
-              <h3 className="font-semibold">LOCATION</h3>
-              <p>{currentProject?.location}</p>
+              <h3 className="font-semibold">ARCHITECT</h3>
+              <p>{currentProject?.architect}</p>
             </div>
 
             <div className="border-t border-b border-black mt-1 w-full py-2">
-              <h3 className="font-semibold">YEAR</h3>
-              <p>{currentProject?.year}</p>
+              <h3 className="font-semibold">SIZE AND COST</h3>
+              <p>{currentProject?.sizeAndCost}</p>
             </div>
           </div>
 

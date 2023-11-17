@@ -17,9 +17,9 @@ export interface AllProjectsProps {
   _id: string;
   name: string;
   description: string;
-  location: string;
-  client: string;
-  year: string;
+  developer: string;
+  architect: string;
+  sizeAndCost: string;
   portfolioImages: ImageObject[];
 }
 
