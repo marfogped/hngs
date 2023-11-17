@@ -9,7 +9,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
   return (
     <section
       id="about"
-      className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 min-h-[60vh] max-h-max xl:w-3/4 xs:w-full mx-auto place-content-center"
+      className="grid md:grid-cols-4 xs:grid-rows-0 xs:grid-cols-1 p-8 py-44 max-h-max xl:w-3/4 xs:w-full mx-auto place-content-center"
     >
       <div className="col-span-1">
         <h1 className="text-xl font-semibold">

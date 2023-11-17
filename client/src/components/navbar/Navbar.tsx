@@ -145,7 +145,7 @@ const Navbar = () => {
                   scrollToTop();
                 }}
                 id="home-option"
-                className={` ${location.pathname === "/contact" ? "text-white" : "text-black"} sm:text-5xl lg:text-6xl xl:text-8xl link-underline-black
+                className={` ${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl
                 link link-underline font-semibold transition-all duration-300 ease-in-out`}
               >
                 <Link to="/">
