@@ -31,13 +31,7 @@ const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   const location = useLocation();
-
-  const scrollToTop = () => {
-    setTimeout(() => {}, 50);
-  };
-
-  console.log(location)
-
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -112,7 +106,6 @@ const Navbar = () => {
                 open ? "link-underline-black" : "link-underline-white"
               } text-4xl font-semibold`}
               onClick={() => {
-                scrollToTop();
                 setOpen(false);
               }}
             >
@@ -121,7 +114,6 @@ const Navbar = () => {
             <motion.div
               onTouchStart={() => {
                   setOpen(!open);
-                  scrollToTop();
               }}
               className={`link link-underline fixed top-[88px] right-0 bottom-0 w-full text-black bg-white`}
               variants={variants}
@@ -141,9 +133,6 @@ const Navbar = () => {
               className="flex items-center justify-between w-full"
             >
               <li
-                onClick={() => {
-                  scrollToTop();
-                }}
                 id="home-option"
                 className={` ${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl
                 link link-underline font-semibold transition-all duration-300 ease-in-out`}
@@ -156,9 +145,6 @@ const Navbar = () => {
                 ? NAV_ITEMS.map((item) => (
                     <li
                       key={item.name}
-                      onClick={() => {
-                        scrollToTop();
-                      }}
                       id={`${item.name.toLowerCase()}-option`}
                       className={`font-semibold link link-underline ${
                         item.name === "CONTACT"

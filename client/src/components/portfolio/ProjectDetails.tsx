@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Contact } from "../index";
 import { useSanity } from "../../hooks/useSanity";
 import ParallaxGallery from "./ParallaxGallery";
 import "./Portfolio.css";
@@ -97,12 +96,6 @@ const ProjectDetails = () => {
             }
           </div>
         </div>
-        <Contact
-          data={{
-            contactTitle: "Want to get in touch?",
-            contactDescription: "",
-          }}
-        />
       </section>
     </>
   );
