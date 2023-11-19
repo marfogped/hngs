@@ -18,18 +18,18 @@ export default {
       type: 'text',
     },
     {
-      name: 'location',
-      title: 'Location',
+      name: 'developer',
+      title: 'Developer',
       type: 'string',
     },
     {
-      name: 'client',
-      title: 'Client',
+      name: 'architect',
+      title: 'Architect',
       type: 'string',
     },
     {
-      name: 'year',
-      title: 'Year',
+      name: 'sizeAndCost',
+      title: 'Size and Cost',
       type: 'string',
     },
     {

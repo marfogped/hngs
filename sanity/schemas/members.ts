@@ -1,3 +1,4 @@
+import { Rule } from 'sanity'
 import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list'
 
 export default {
@@ -6,31 +7,41 @@ export default {
   type: 'document',
   orderings: [orderRankOrdering],
   fields: [
-    orderRankField({type: 'hngsMembers'}),
+    orderRankField({ type: 'hngsMembers' }),
     {
-      name: 'fullName',
-      title: 'Full Name',
-      type: 'string',
-    },
-    {
-      name: 'position',
-      title: 'Position',
-      type: 'string',
-    },
-    {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'members',
+      title: 'Members',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'fullName',
+              title: 'Full Name',
+              type: 'string',
+            },
+            {
+              name: 'position',
+              title: 'Position',
+              type: 'string',
+            },
+            {
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+            },
+          ]
+        }
+      ],
+      validation: (Rule: Rule) => Rule.max(4),
     },
   ],
   preview: {
-    select: {
-      title: 'fullName',
-    },
-    prepare({title} : any) {
+    prepare() {
       return {
-        title: title,
-      }
+        title: `Row`,
+      };
     },
   },
-}
+};
