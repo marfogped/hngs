@@ -20,11 +20,11 @@ const staggerVariants = {
 
 const Members = ({ members }: AllMembersInt) => {
   return (
-    <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 xs:mt-20 sm:mt-20">
+    <section className="min-h-min w-full xs:p-0 sm:p-0 p-6 xs:mb-20 sm:mb-20">
       { members
         ? members.map((membersArr, membersArrIdx) => (
             <div 
-            className={`${membersArr.members.length === 4 ? `grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4` : `grid xs:grid-cols-1 sm:grid-cols-2 xs:w-full sm:w-full md:w-1/2`} gap-y-8 gap-x-[5px]`}
+            className={`${membersArr.members.length === 4 ? `grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4` : `grid xs:grid-cols-1 sm:grid-cols-2 xs:w-full sm:w-full md:w-1/2`} gap-x-[5px] mb-8`}
             key={membersArrIdx}
             >
               {
@@ -39,7 +39,7 @@ const Members = ({ members }: AllMembersInt) => {
                   >
                     <div className="h-[85%]">
                       <img
-                        className="h-full w-full flex object-cover"
+                        className="h-full w-full flex object-cover bg-gradient-to-br from-gray-100 to-gray-300"
                         src={member.image}
                         alt={`${member.fullName} image`}
                       />
