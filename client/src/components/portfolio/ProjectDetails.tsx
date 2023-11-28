@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import { useSanity } from "../../hooks/useSanity";
 import ParallaxGallery from "./ParallaxGallery";
 import "./Portfolio.css";
+import useWindowDimensions from "../../hooks/useWindowDimentions";
 
 const ProjectDetails = () => {
   const { getProjectByName, currentProject, setCurrentProject } = useSanity();
   const { project } = useParams();
+
+  const { windowWidth } = useWindowDimensions();
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -87,13 +90,24 @@ const ProjectDetails = () => {
         </div>
         <div className="w-full flex flex-col">
           <div className="h-min w-full">
-            {
-              currentProject?.portfolioImages?.length
-                ? currentProject.portfolioImages.map((image, imageIdx) => (
-                    <ParallaxGallery key={imageIdx} image={image.imageUrl} />                  
-                  ))
-                : ""
-            }
+            {currentProject?.portfolioImages?.length
+              ? currentProject.portfolioImages.map((image, imageIdx) => (
+                  <>
+                    {windowWidth > 768 ? (
+                      <ParallaxGallery key={imageIdx} image={image.imageUrl} />
+                    ) : (
+                      <div
+                        className="w-full h-screen"
+                        style={{
+                          backgroundImage: `url(${image.imageUrl})`,
+                          backgroundPosition: "bottom",
+                          backgroundSize: "cover",
+                        }}
+                      />
+                    )}
+                  </>
+                ))
+              : ""}
           </div>
         </div>
       </section>
