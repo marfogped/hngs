@@ -5,6 +5,7 @@ import ToggleButton from "./toggle-button/ToggleButton";
 import Links from "./links/Links";
 import { motion } from "framer-motion";
 import useWindowDimensions from "../../hooks/useWindowDimentions";
+import Logo from "../../assets/img/hngs-logo.webp"
 
 const variants = {
   open: {
@@ -109,7 +110,13 @@ const Navbar = () => {
                 setOpen(false);
               }}
             >
-              <Link to={"/"}>HNGS</Link>
+              <Link to={"/"}>
+                <img 
+                src={Logo} 
+                alt="HNGS Logo"
+                className="h-16 w-auto"
+                />
+              </Link>
             </div>
             <motion.div
               onTouchStart={() => {
@@ -138,7 +145,11 @@ const Navbar = () => {
                 link link-underline font-semibold transition-all duration-300 ease-in-out`}
               >
                 <Link to="/">
-                  <span>HNGS</span>
+                  <img 
+                  src={Logo} 
+                  alt="HNGS Logo"
+                  className="h-24 w-auto"
+                  />  
                 </Link>
               </li>
               {NAV_ITEMS
