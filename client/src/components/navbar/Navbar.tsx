@@ -93,7 +93,7 @@ const Navbar = () => {
 
   return (
     <>
-      {windowWidth < 767 ? (
+      {windowWidth < 768 ? (
         <>
           <motion.nav
             className={` ${ open ? `bg-white text-black` 
@@ -114,12 +114,12 @@ const Navbar = () => {
                 <img 
                 src={Logo} 
                 alt="HNGS Logo"
-                className="h-16 w-auto"
+                className="h-12 w-auto"
                 />
               </Link>
             </div>
             <motion.div
-              onTouchStart={() => {
+              onClick={() => {
                   setOpen(!open);
               }}
               className={`link link-underline fixed top-[88px] right-0 bottom-0 w-full text-black bg-white`}
