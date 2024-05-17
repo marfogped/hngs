@@ -55,7 +55,7 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                         {project.name}
                       </span>
                       <span className="block font-normal text-stone-600">
-                        {project.location}
+                        {project.developer}
                       </span>
                     </div>
                   </Link>

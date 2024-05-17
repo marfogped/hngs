@@ -17,9 +17,9 @@ export interface AllProjectsProps {
   _id: string;
   name: string;
   description: string;
-  location: string;
-  client: string;
-  year: string;
+  developer: string;
+  architect: string;
+  sizeAndCost: string;
   portfolioImages: ImageObject[];
 }
 
@@ -27,10 +27,15 @@ export interface AllProjectsInt {
   projects: AllProjectsProps[];
 }
 
-export interface AllMembersProps {
+export interface MembersProps {
   fullName: string;
   position: string;
   image: string;
+}
+
+export interface AllMembersProps {
+  _id: string,
+  members: MembersProps[]
 }
 
 export interface AllMembersInt {

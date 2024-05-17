@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Contact } from "../index";
 import { useSanity } from "../../hooks/useSanity";
 import ParallaxGallery from "./ParallaxGallery";
 import "./Portfolio.css";
+import useWindowDimensions from "../../hooks/useWindowDimentions";
 
 const ProjectDetails = () => {
   const { getProjectByName, currentProject, setCurrentProject } = useSanity();
   const { project } = useParams();
+
+  const { windowWidth } = useWindowDimensions();
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -27,11 +29,11 @@ const ProjectDetails = () => {
     return () => {
       setCurrentProject({
         _id: "",
-        client: "",
-        year: "",
+        developer: "",
+        architect: "",
         name: "",
         description: "",
-        location: "",
+        sizeAndCost: "",
         portfolioImages: [],
       });
     };
@@ -63,18 +65,18 @@ const ProjectDetails = () => {
             </p>
 
             <div className="border-t border-black xs:mt-5 sm:mt-5 lg:mt-12 w-full py-2">
-              <h3 className="font-semibold">CLIENT</h3>
-              <p>{currentProject?.client}</p>
+              <h3 className="font-semibold">DEVELOPER</h3>
+              <p>{currentProject?.developer}</p>
             </div>
 
             <div className="border-t border-black w-full py-2">
-              <h3 className="font-semibold">LOCATION</h3>
-              <p>{currentProject?.location}</p>
+              <h3 className="font-semibold">ARCHITECT</h3>
+              <p>{currentProject?.architect}</p>
             </div>
 
             <div className="border-t border-b border-black mt-1 w-full py-2">
-              <h3 className="font-semibold">YEAR</h3>
-              <p>{currentProject?.year}</p>
+              <h3 className="font-semibold">SIZE AND COST</h3>
+              <p>{currentProject?.sizeAndCost}</p>
             </div>
           </div>
 
@@ -88,21 +90,26 @@ const ProjectDetails = () => {
         </div>
         <div className="w-full flex flex-col">
           <div className="h-min w-full">
-            {
-              currentProject?.portfolioImages?.length
-                ? currentProject.portfolioImages.map((image, imageIdx) => (
-                    <ParallaxGallery key={imageIdx} image={image.imageUrl} />                  
-                  ))
-                : ""
-            }
+            {currentProject?.portfolioImages?.length
+              ? currentProject.portfolioImages.map((image, imageIdx) => (
+                  <>
+                    {windowWidth > 768 ? (
+                      <ParallaxGallery key={imageIdx} image={image.imageUrl} />
+                    ) : (
+                      <div
+                        className="w-full h-screen"
+                        style={{
+                          backgroundImage: `url(${image.imageUrl})`,
+                          backgroundPosition: "bottom",
+                          backgroundSize: "cover",
+                        }}
+                      />
+                    )}
+                  </>
+                ))
+              : ""}
           </div>
         </div>
-        <Contact
-          data={{
-            contactTitle: "Want to get in touch?",
-            contactDescription: "",
-          }}
-        />
       </section>
     </>
   );

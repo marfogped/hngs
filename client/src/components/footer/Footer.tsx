@@ -38,7 +38,7 @@ const Footer = () => {
                 <li key={mediaIdx}>
                   {media?.socialMedia === "facebook" && (
                     <span>
-                      <a target="_blank" href={media.mediaUrl}>
+                      <a aria-label={`${media?.socialMedia}`} target="_blank" href={media.mediaUrl}>
                         <FacebookIcon />
                       </a>
                     </span>
@@ -46,7 +46,7 @@ const Footer = () => {
 
                   {media?.socialMedia === "instagram" && (
                     <span>
-                      <a target="_blank" href={media.mediaUrl}>
+                      <a aria-label={`${media?.socialMedia}`} target="_blank" href={media.mediaUrl}>
                         <InstagramIcon />
                       </a>
                     </span>
@@ -54,7 +54,7 @@ const Footer = () => {
 
                   {media?.socialMedia === "youtube" && (
                     <span>
-                      <a target="_blank" href={media.mediaUrl}>
+                      <a aria-label={`${media?.socialMedia}`} target="_blank" href={media.mediaUrl}>
                         <YoutubeIcon />
                       </a>
                     </span>
@@ -62,7 +62,7 @@ const Footer = () => {
 
                   {media?.socialMedia === "linkedin" && (
                     <span>
-                      <a target="_blank" href={media.mediaUrl}>
+                      <a aria-label={`${media?.socialMedia}`} target="_blank" href={media.mediaUrl}>
                         <LinkedInIcon />
                       </a>
                     </span>
@@ -70,7 +70,7 @@ const Footer = () => {
 
                   {media?.socialMedia === "behance" && (
                     <span>
-                      <a target="_blank" href={media.mediaUrl}>
+                      <a aria-label={`${media?.socialMedia}`} target="_blank" href={media.mediaUrl}>
                         <BehanceIcon />
                       </a>
                     </span>

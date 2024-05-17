@@ -31,6 +31,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
                 name="firstName"
                 className="peer form-input"
                 placeholder=" "
+                aria-label="First Name"
               />
               <label className="form-label">First name</label>
             </div>
@@ -41,6 +42,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
                 name="lastName"
                 className="peer form-input"
                 placeholder=" "
+                aria-label="Last Name"
               />
               <label className="form-label">Last name</label>
             </div>
@@ -51,6 +53,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
                 name="email"
                 className="peer form-input"
                 placeholder=" "
+                aria-label="Email"
               />
               <label className="form-label">Email</label>
             </div>
@@ -61,6 +64,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
                 name="phone"
                 className="peer form-input"
                 placeholder=" "
+                aria-label="Phone"
               />
               <label className="form-label">Phone</label>
             </div>
@@ -70,6 +74,7 @@ const Contact: React.FC<ContactProps> = ({ data }) => {
                 name="message"
                 className="peer resize-none h-32 form-input"
                 placeholder=" "
+                aria-label="Your Message"
               ></textarea>
               <label className="form-label">Your message</label>
             </div>

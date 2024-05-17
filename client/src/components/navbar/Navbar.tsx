@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "../../constants";
 import ToggleButton from "./toggle-button/ToggleButton";
 import Links from "./links/Links";
 import { motion } from "framer-motion";
 import useWindowDimensions from "../../hooks/useWindowDimentions";
+import Logo from "../../assets/img/hngs-logo.webp"
 
 const variants = {
   open: {
@@ -28,13 +29,10 @@ const variants = {
 const Navbar = () => {
   const { windowWidth } = useWindowDimensions();
   const [open, setOpen] = useState(false);
-  const [hasTouched, setHasTouched] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  const scrollToTop = () => {
-    setTimeout(() => {}, 50);
-  };
-
+  const location = useLocation();
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -95,13 +93,13 @@ const Navbar = () => {
 
   return (
     <>
-      {windowWidth < 767 ? (
+      {windowWidth < 768 ? (
         <>
           <motion.nav
-            className={` ${
-              open ? "bg-white" : "bg-transparent"
-            }
-            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10 text-black`}
+            className={` ${ open ? `bg-white text-black` 
+            :  `bg-transparent ${location.pathname === "/contact" ? "text-white" : "text-black"}` 
+          }
+            flex items-center justify-between p-6 fixed transition-all ease-in w-full z-10`}
             animate={open ? "open" : "closed"}
           >
             <div
@@ -109,19 +107,20 @@ const Navbar = () => {
                 open ? "link-underline-black" : "link-underline-white"
               } text-4xl font-semibold`}
               onClick={() => {
-                scrollToTop();
                 setOpen(false);
               }}
             >
-              <Link to={"/"}>HNGS</Link>
+              <Link to={"/"}>
+                <img 
+                src={Logo} 
+                alt="HNGS Logo"
+                className="h-12 w-auto"
+                />
+              </Link>
             </div>
             <motion.div
-              onTouchStart={() => {
-                if (!hasTouched) {
+              onClick={() => {
                   setOpen(!open);
-                  scrollToTop();
-                  setHasTouched(true);
-                }
               }}
               className={`link link-underline fixed top-[88px] right-0 bottom-0 w-full text-black bg-white`}
               variants={variants}
@@ -141,29 +140,27 @@ const Navbar = () => {
               className="flex items-center justify-between w-full"
             >
               <li
-                onClick={() => {
-                  scrollToTop();
-                }}
                 id="home-option"
-                className={`text-black sm:text-5xl lg:text-6xl xl:text-8xl link-underline-black
+                className={` ${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl
                 link link-underline font-semibold transition-all duration-300 ease-in-out`}
               >
                 <Link to="/">
-                  <span>HNGS</span>
+                  <img 
+                  src={Logo} 
+                  alt="HNGS Logo"
+                  className="h-24 w-auto"
+                  />  
                 </Link>
               </li>
               {NAV_ITEMS
                 ? NAV_ITEMS.map((item) => (
                     <li
                       key={item.name}
-                      onClick={() => {
-                        scrollToTop();
-                      }}
                       id={`${item.name.toLowerCase()}-option`}
                       className={`font-semibold link link-underline ${
                         item.name === "CONTACT"
-                          ? `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all duration-300 ease-in-out`
-                          : `text-black link-underline-black sm:text-5xl lg:text-6xl xl:text-8xl transition-all duration-300 ease-in-out`
+                          ? `${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl stroke-font transition-all duration-300 ease-in-out`
+                          : `${location.pathname === "/contact" ? "text-white link-underline-white" : "text-black link-underline-black"} sm:text-5xl lg:text-6xl xl:text-8xl transition-all duration-300 ease-in-out`
                       }`}
                     >
                       <Link to={item.to}>

@@ -37,7 +37,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ data }) => {
                     <img src={image?.portfolioImages[0].imageUrl} className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-300 group-hover:scale-110" alt="" />
                   </div>
                   <div className="absolute bottom-0 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">
-                    <h1 className="opacity-0 group-hover:opacity-100 text-2xl font-bold text-white transition duration-300 ease-in-out">{image?.name}</h1>
+                    <h2 className="opacity-0 group-hover:opacity-100 text-2xl font-bold text-white transition duration-300 ease-in-out">{image?.name}</h2>
                   </div>
                 </div>
               </Link>

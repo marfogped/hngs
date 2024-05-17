@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 type ToggleButtonProps = {
   setOpen: (value: boolean) => void;
@@ -7,9 +8,11 @@ type ToggleButtonProps = {
 };
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ setOpen, open }) => {
+  const location = useLocation();
+
   return (
     <button
-      className={`stroke-black`}
+      className={`${location.pathname === "/contact" ? ` ${open ? "stroke-black": "stroke-white"}` : "stroke-black"}`}
       onClick={() => setOpen(!open)}
     >
       <svg height="35" viewBox="0 0 20 17">
