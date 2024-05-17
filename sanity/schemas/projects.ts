@@ -1,4 +1,4 @@
-import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default {
   name: 'hngsProjects',
@@ -36,15 +36,17 @@ export default {
       name: 'portfolioImages',
       title: 'Portfolio Images',
       type: 'array',
-      of: [{ type: 'image', options: { hotspot: true }}],
-    }
+      description:
+        'Recommendation: 1920x1080 recommended picture size and .webp file format. See how to reduce both at https://squoosh.app/',
+      of: [{type: 'image', options: {hotspot: true}}],
+    },
   ],
   preview: {
     select: {
       title: 'name',
       id: '_id',
     },
-    prepare({title, id} : any) {
+    prepare({title, id}: any) {
       return {
         title: title,
         subtitle: id,
