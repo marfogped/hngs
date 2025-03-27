@@ -40,7 +40,7 @@ const AllProjects = ({ projects }: AllProjectsInt) => {
                   onClick={() => {
                     setCurrentProject(project);
                   }}
-                  className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] pb-2 group"
+                  className="xs:h-[90vh] sm:h-[90vh] md:h-[80vh] pb-4 group"
                 >
                   <Link to={link}>
                     <div className="xs:h-5/6 sm:h-5/6 md:h-[90%]">

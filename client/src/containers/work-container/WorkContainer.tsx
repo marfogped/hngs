@@ -4,8 +4,6 @@ import { Hero, About, Contact, AllProjects, Loading } from "../../components";
 import { FetchError } from "../../components";
 
 const WorkContainer = () => {
-  window.scrollTo({ top: 0 });
-
   const {
     getWorkPage,
     getAllProjects,
@@ -18,10 +16,11 @@ const WorkContainer = () => {
   useEffect(() => {
     if (!workSection.length) getWorkPage();
     if (!allProjects.length) getAllProjects();
-  });
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return (
-    <>
+    <div className="h-max mb-20">
       {isLoading ? (
         <Loading />
       ) : (
@@ -48,7 +47,7 @@ const WorkContainer = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 
